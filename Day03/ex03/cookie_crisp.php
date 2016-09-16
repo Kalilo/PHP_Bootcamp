@@ -32,8 +32,5 @@
 				echo "{$_COOKIE[$name]}\n";
 			$name = NULL;
 		}
-		//print_r($k);
-//	if ($GET["action"] === "del")
-	//	setcookie($_GET["name"], "should not exist", 1);
 	}
 ?>
