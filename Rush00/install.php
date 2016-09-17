@@ -37,6 +37,7 @@ database_setup:
 	else
 		goto sqlerror;
 	/*End*/
+end:
 	echo "Finished setting up rush00 database{$eol}";
 	mysqli_close($conn);
 ?>
