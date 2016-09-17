@@ -2,7 +2,7 @@
 	 $username = ($_GET['login'] != NULL) ? $_GET['login'] : "enterusername";
 	 $u = ($_GET['login'] != NULL) ? $username : NULL;
 	 $password = ($_GET['passwd'] != NULL) ? $_GET['passwd'] : "password";
-	 $p = ($_GET['passwd'] != NULL) ? : NULL;
+	 $p = ($_GET['passwd'] != NULL) ? $password : NULL;
 ?>
 <body style="background-color:grey">
 <h1>Login Form</h1>
