@@ -8,12 +8,12 @@
 	if (file_exists("../private") === FALSE)
 		mkdir("../private/");
 	if (file_exists("../private/passwd") === FALSE)
-		if (file_put_contents("../private/passwd", "" == FALSE))
+		if (file_put_contents("../private/passwd", "") === FALSE)
 			die ("ERROR\n");
 	$file = unserialize(file_get_contents("../private/passwd"));
 	/*Scan for duplicate*/
-	foreach ($file as $key =>$val)
-		if ($val['login'] == $username)
+	foreach ($file as $varname =>$varval)
+		if ($varval['login'] == $username)
 			die("ERROR\n");
 	/*Store values*/
 	$user['login'] = $username;
