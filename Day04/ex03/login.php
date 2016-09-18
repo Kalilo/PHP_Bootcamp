@@ -1,8 +1,9 @@
 <?php
+	session_start();
 	/*Includes*/
 	include("auth.php");
 	/*Setup*/
-	session_start();
+	
 	if ($_GET['login'] != NULL)
 	{
 		$username = $_GET['login'];
