@@ -12,14 +12,14 @@
 	if ($file === NULL)
 		die("ERROR file contents was null\n");
 	/*Scan for matching login*/
-	$index = -1;
-	while ($file[++$index])
-		if ($file[$index]['login'] == $username && $file[$index]['passwd'] == $oldpassword)
+	$user = -1;
+	while ($file[++$user])
+		if ($file[$user]['login'] == $username && $file[$user]['passwd'] == $oldpassword)
 		{
 			/*Store New Password*/
-			$file[$index]['passwd'] == $newpassword; //Might not be reinserting into $file
-			$file = serialize($file);
-			if (file_put_contents("../private/passwd", $file) === FALSE)
+			$file[$user]['passwd'] = $newpassword;
+			$f = serialize($file);
+			if (file_put_contents("../private/passwd", $f) === FALSE)
 				die("ERROR could not write file\n");
 			die ("OK\n");
 		}
