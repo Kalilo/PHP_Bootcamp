@@ -6,8 +6,10 @@
 		$file = unserialize(file_get_contents("../private/passwd"));
 		/*Scan*/
 		foreach ($file as $var => $value)
-			if ($value['login'] === $username && $value['passwd'] === $password)
+		{
+			if ($value['login'] === $login && $value['passwd'] === $password)
 				return (TRUE);
+		}
 		return (FALSE);
 	}
 ?>

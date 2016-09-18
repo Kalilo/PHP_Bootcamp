@@ -1,12 +1,20 @@
 <?php
 	/*Includes*/
-	include("namedauth.php");
+	include("auth.php");
 	/*Setup*/
 	session_start();
-	$username = ($_GET['login'] != NULL) ? $_GET['login'] : $_POST['login'];
-	$password = ($_GET['passwd'] != NULL) ? $GET['passwd'] : $_POST['passwd'];
+	if ($_GET['login'] != NULL)
+	{
+		$username = $_GET['login'];
+		$passwd = $_GET['passwd'];
+	}
+	else
+	{
+		$username = $_POST['login'];
+		$passwd = $_POST['passwd'];
+	}
 	/**/
-	$valid = auth($username, $password);
+	$valid = auth($username, $passwd);
 	$_SESSION['loggued_on_user'] = ($valid) ? $username : NULL;
 	$str = ($valid) ? "OK\n" : "ERROR\n";
 	echo $str;
