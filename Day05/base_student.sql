@@ -116,7 +116,7 @@ CREATE TABLE `film` (
   `id_distrib` int(11) DEFAULT NULL,
   `title` varchar(255) NOT NULL,
   `summary` varchar(255) NOT NULL,
-  `realease_date` date NOT NULL,
+  `release_date` date NOT NULL,
   `last_projection` date NOT NULL,
   `duration` int(11) NOT NULL,
   `prod_year` int(11) DEFAULT NULL,
@@ -246,7 +246,7 @@ DROP TABLE IF EXISTS `member`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `member` (
-  `id_membre` int(11) NOT NULL,
+  `id_member` int(11) NOT NULL,
   `id_user_card` int(11) NOT NULL,
   `id_sub` int(11) DEFAULT NULL,
   `date_sub` datetime DEFAULT NULL,
