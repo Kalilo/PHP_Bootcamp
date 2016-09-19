@@ -1,1 +1,3 @@
-SELECT count(*) as "nb_short-films" FROM film WHERE duration <= 42;
+SELECT count(*) as "nb_short-films"
+FROM film
+WHERE duration <= 42;
