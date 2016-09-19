@@ -1,0 +1,2 @@
+USE db_khansman;
+SET autocommit=0 ; source base_student.sql ; COMMIT ;
