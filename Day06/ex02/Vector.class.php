@@ -1,10 +1,8 @@
 <?php
 Class Vector {
 	/*Variables*/
-	private $_x = 0;
-	private $_y = 0;
-	private $_z = 0;
-	private $_w = 1;
+	private $_dest;
+	private $_orig;
 	public  $verbose = FALSE;
 	/*Standard Basic Methods*/
 	public static function doc() {
@@ -16,18 +14,21 @@ Class Vector {
 	/*Constructor and Destructor*/
 	public function __construct(array $kwargs) {
 		if (array_key_exists('dest', $kwargs)) {
-			//
+			$this->_dest = $kwargs['dest'];
 		}
 		if (array_key_exists('orig', $kwargs)) {
-			//
+			$this->_orig = $kwargs['orig'];
 		}
 		if (self::$verbose == TRUE)
 			print($this . " construced." . PHP_EOF);
 	}
 	public function __destruct() {
-		//
 		if (self::$verbose == TRUE)
 			print($this . " destucted." . PHP_EOF);
+	}
+	/*Vector Calculations*/
+	public function magnitude() {
+		//return ();
 	}
 }
 ?>
