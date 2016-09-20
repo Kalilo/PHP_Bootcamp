@@ -76,13 +76,13 @@ class Vertex {
 		if (array_key_exists('color', $kwargs))
 			$this->_color = new Color (array ('rgb' => $kwargs['color']));
 		if (self::$verbose == TRUE)
-			print($this . " constructed." . PHP_EOL);
+			print("$this constructed." . PHP_EOL);
 	}
 
 	function __destruct()
 	{
 		if (self::$verbose == TRUE)
-			print($this . " destructed." . PHP_EOL);
+			print("$this destructed." . PHP_EOL);
 		unset($red, $green, $blue, $verbose);
 	}
 
