@@ -1,1 +1,1 @@
-CREATE DATABASE db_khasman;
+CREATE DATABASE db_khansman;
