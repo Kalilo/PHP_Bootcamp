@@ -7,7 +7,7 @@ class Vertex {
     private $_x = 0;
 	private $_y = 0;
 	private $_z = 0;
-	private $_w = 0;
+	private $_w = 1;
 	private $_color = 0;
 	public static $verbose = FALSE;
 
@@ -40,8 +40,10 @@ class Vertex {
 			$this->_w   = $kwargs['w'];
 		if (array_key_exists('color', $kwargs))
 			$this->_color = new Color (array ('rgb' => $kwargs['color']));
+		else
+			$this->_color = new Color (array('rgb' => 0xFFFFFF));
 		if (self::$verbose == TRUE)
-			print("Vertex modified to: ( x: {$this->_x}, y:  {$this->_y}, z:  {$this->_z}, w:  {$this->_w}, Color:  {$this->_color}, ).\n");
+			print($this . PHP_EOF);
 	}
 
 	/*Basic Class Functions */
@@ -56,7 +58,9 @@ class Vertex {
 
 	function __toString()
 	{
-		return ("Color( red:  {$this->red}, green:  {$this->green}, blue:  {$this->blue} )");
+		if (self::$verbose == TRUE)
+			return ("Vertex( x: {$this->_x}, y:{$this->_y}, z: {$this->_z}, w: {$this->_w} ), {$this->_color})");
+		return ("Vertex( x: {$this->_x}, y:{$this->_y}, z: {$this->_z}, w: {$this->_w} )");
 	}
 
 	function __construct( array $kwargs )
@@ -72,13 +76,13 @@ class Vertex {
 		if (array_key_exists('color', $kwargs))
 			$this->_color = new Color (array ('rgb' => $kwargs['color']));
 		if (self::$verbose == TRUE)
-			print("Vertex( x: {$this->_x}, y: {$this->_y}, z: {$this->_z} ) constructed.\n");
+			print($this . " constructed." . PHP_EOL);
 	}
 
 	function __destruct()
 	{
 		if (self::$verbose == TRUE)
-			print("Color( red:  {$this->red}, green:  {$this->green}, blue:  {$this->blue} ) destructed.\n");
+			print($this . " destructed." . PHP_EOL);
 		unset($red, $green, $blue, $verbose);
 	}
 
