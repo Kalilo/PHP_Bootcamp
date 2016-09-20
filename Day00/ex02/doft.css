@@ -1,0 +1,111 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    doft.css                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: khansman <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/09/12 10:56:32 by khansman          #+#    #+#              #
+#    Updated: 2016/09/12 10:56:34 by khansman         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+div {
+	border-radius: 5px;
+	box-shadow: 10px 10px 5px #000000;
+}
+
+#header {
+	box-shadow: 10px 10px 5px #000000;
+	border-radius: 10px;
+	z-index: 1;
+	position: relative;
+	width: 80%;
+	left: 10%;
+	margin-top: 10px;
+	height: 100px;
+	background-color:#909090;
+	margin-bottom: 10px;
+}
+
+.left{
+	border-radius: 5px;
+	box-shadow: 10px 10px 5px #000000;
+	position: fixed;
+	float: left;
+	top: 13%;
+	left: 12%;
+	width: 10%;
+	height: 50%;
+	background-color: #909090;
+	margin-bottom: 10px;
+}
+
+.middle{
+	border-radius: 5px;
+	box-shadow: 10px 10px 5px #000000;
+	position: fixed;
+	top: 13%;
+	width: 54%;
+	height: 70%;
+	left: 23%;
+	background-color:#909090;
+	margin-bottom: 10px;
+}
+
+.right{
+	border-radius: 5px;
+	box-shadow: 10px 10px 5px #000000;
+	position: fixed;
+	float: right;
+	top: 13%;
+	right: 12%;
+	width: 10%;
+	height: 50%;
+	background-color:#909090;
+	margin-bottom: 10px;
+}
+
+.txtbox {
+	border-radius: 5px;
+	box-shadow: 10px 10px 5px #000000;
+	position: fixed;
+	float: right;
+	left: 10%;
+	bottom: 10%;
+	width: 25%;
+	height: 15%;
+	background-color: lawngreen;
+	margin-bottom: 10px;
+}
+
+.imgcluster {
+	width: 98%;
+	height: 98%;
+	margin-top: 1%;
+	margin-left: 1%;
+}
+
+.button {
+	width: 10%;
+	height: 10%;
+	border-radius: 5px;
+	box-shadow: 10px 10px 5px #000000;
+	background-color: lightgray;
+}
+
+input [type=text] {
+    width: 100%;
+}
+
+.button {
+    background-color: #FFFFFF;
+
+	box-shadow: 0 0 0 #000000;
+    border: none;
+    color: black;
+    text-align: center;
+    display: inline-block;
+    font-size: 20%;
+    cursor: pointer;
+}

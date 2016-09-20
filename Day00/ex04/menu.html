@@ -1,0 +1,59 @@
+<!-- *********************************************************************** -->
+<!--                                                                         -->
+<!--                                                      :::      ::::::::  -->
+<!-- menu.html                                          :+:      :+:    :+:  -->
+<!--                                                  +:+ +:+         +:+    -->
+<!-- By: khansman <marvin@42.fr>                    +#+  +:+       +#+       -->
+<!--                                              +#+#+#+#+#+   +#+          -->
+<!-- Created: 2016/09/12 16:17:37 by khansman          #+#    #+#            -->
+<!-- Updated: 2016/09/12 16:17:40 by khansman         ###   ########.fr      -->
+<!--                                                                         -->
+<!-- *********************************************************************** -->
+
+<html>
+<head>
+	<TITLE>Menu</TITLE>
+	<link type="text/css" rel="stylesheet" href="menu.css"/>
+</head>
+<body style="background-color:darkgreen;">
+<h1>French National Railway</h1>
+<div class="dropdown">
+  <div>
+	  <p>A train leaves Paris for Lyon, Saturday September 12th 1985, day of a lunar eclipse.</p>
+	  <p>It will ride at 216 km/h, the wind blows S/SE at a factor 5, and the temperature outside</p>
+	  <p>the train is 13 degree Celsius, and 22&degC inside. The sky is cloudy. Another train leaves</p>
+	  <p>Lyon for Paris, on the same day at 23:00. It is riding at 224km/h. Which one of these</p>
+	  <p>two train will be the furthest away from Paris when they will cross path?</p>
+	  <p>(When you're done use the drop down menu to check your answer.)</p>
+  <div class="dropdown-content">
+	  <B style="font-size:100%;">Train 1</B>
+	  <p>Date:</p>
+	  <input type="text" name="d" value="DD" maxlength="2" /> /
+	  <input type="text" name="m" value="MM" maxlength="2" /> /
+      <input type="text" name="y" value="YYYY" maxlength="4" />
+	  <p>Speed:</p>
+	  <input type="text" name="speed" value="km/h" maxlength="10" />
+	  <p>Wind:</p>
+	  <input type="text" name="wdirect" value="N-E-S-W" maxlength="10" />
+	  <input type="text" name="wspeed" value="km/h" maxlength="10" />
+	  <p>Temptature:</p>
+	  <input type="text" name="temp" value="&deg C" maxlength="10" />
+	  <BR />
+	  <BR />
+	  <B style="font-size:100%;">Train 2</B>
+	  <p>Date:</p>
+	  <input type="text" name="d" value="DD" maxlength="2" /> /
+	  <input type="text" name="m" value="MM" maxlength="2" /> /
+      <input type="text" name="y" value="YYYY" maxlength="4" />
+	  <p>Speed:</p>
+	  <input type="text" name="speed" value="km/h" maxlength="10" />
+	  <p>Wind:</p>
+	  <input type="text" name="wdirect" value="N-E-S-W" maxlength="10" />
+	  <input type="text" name="wspeed" value="km/h" maxlength="10" />
+	  <p>Temptature:</p>
+	  <input type="text" name="temp" value="&deg C" maxlength="10" />
+  </div>
+</div>
+
+</body>
+</html>

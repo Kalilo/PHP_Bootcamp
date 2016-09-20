@@ -1,0 +1,116 @@
+
+BODY
+{
+	background-color: 665522;
+	font-size: 100%;
+}
+H1
+{
+	color: white;
+	text-align: center;
+}
+div.block
+{
+	vertical-align: top;
+	display: inline-block;
+	text-align: center;
+	border: 1px;
+}
+img
+{        
+	border: 5px black;
+	width: 200px;
+	height: 200px;
+}
+.caption
+{
+	display: block;
+}
+.copyright
+{
+	font-family: "Courier New";
+	text-align: right;
+	font-style: italic;
+}
+table
+{
+	width: 100%;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+tr
+{
+}
+td
+{
+	border: 1px solid black;
+	margin: 0px;
+	text-align: center;
+	width: 1%;
+}
+.name
+{
+	font-weight: bold;
+	text-align: center;
+}
+.number
+{
+	text-align: left;
+	font-size: small;
+}
+.weight
+{
+	text-align: right;
+	font-size: x-small;
+}
+.blank
+{
+}
+@media (max-width: 830px) 
+{
+BODY
+{
+	font-size: 50%;
+}
+IMG
+{
+	width: 50px;
+	height: 50px;
+}
+table
+{
+	font-size: 25%;
+}
+.number
+{
+	font-size: 20%;
+}
+.weight
+{
+	font-size: 1%;
+}
+}
+@media (max-height: 750px) 
+{
+BODY
+{
+	font-size: 50%;
+}
+IMG
+{
+	width: 50px;
+	height: 50px;
+}
+table
+{
+	font-size: 25%;
+}
+.number
+{
+	font-size: 20%;
+}
+.weight
+{
+	font-size: 1%;
+}
+}
