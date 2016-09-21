@@ -5,7 +5,8 @@ Class Vector {
 	private $_y;
 	private $_z;
 	private $_w;
-	public  $verbose = FALSE;
+	private $_color;
+	public static $verbose = FALSE;
 	/*Standard Basic Methods*/
 	public static function doc() {
 			print(file_get_contents("./Vector.doc.txt"));
@@ -48,19 +49,21 @@ Class Vector {
 		else
 			die('Error creating vector: No dest given.' . PHP_EOL);
 		if (self::$verbose == TRUE)
-			print($this . " construced." . PHP_EOF);
+			print($this . " construced." . PHP_EOL);
 	}
 	public function __destruct() {
 		if (self::$verbose == TRUE)
-			print($this . " destucted." . PHP_EOF);
+			print($this . " destucted." . PHP_EOL);
 	}
 	/*Vector Calculations*/
 	public function magnitude() {
 		return (sqrt(pow($this->_x, 2) + pow($this->_y, 2)));/*returns a float*/
 	}
 	public function normalize() {
-		$tmp = $rhs->request(array ('x', 'y', 'z'));
+		$tmp = $this->request(array ('x', 'y', 'z'));
 		$length = sqrt(($tmp['x'] * $tmp['x']) + ($tmp['y'] * $tmp['y']) + ($tmp['z'] * $tmp['z']));
+	//	if ($length == 0)
+	//		return new Vector($tmp);
 		$tmp['x'] *= (1 / $length);
 		$tmp['y'] *= (1 / $length);
 		$tmp['z'] *= (1 / $length);
