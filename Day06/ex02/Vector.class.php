@@ -44,7 +44,7 @@ Class Vector {
 			$this->_x = $dest['x'] - $orig['x'];
 			$this->_y = $dest['y'] - $orig['y'];
 			$this->_z = $dest['z'] - $orig['z'];
-			$this->_w = ($dest['w'] + $orig['w']) / 2;
+			$this->_w = $dest['w'] - $orig['w'];
 			$this->_color = $dest['color'];
 		}
 		else if (array_key_exists('dest', $kwargs)) {
@@ -82,7 +82,7 @@ Class Vector {
 		$tmp['x'] += $this->_x;
 		$tmp['y'] += $this->_y;
 		$tmp['z'] += $this->_z;
-		$tmp['w'] = ($tmp['w'] + $this->_w) / 2;
+		$tmp['w'] += $this->_w;
 		$t = new Vertex(array ('x' => $tmp['x'], 'y' => $tmp['y'], 'z' => $tmp['z']));
 		return new Vector(array ('dest' => $t));/*returns a vector*/
 	}
@@ -91,7 +91,7 @@ Class Vector {
 		$tmp['x'] = $this->_x - $tmp['x'];
 		$tmp['y'] = $this->_y - $tmp['y'];
 		$tmp['z'] = $this->_z - $tmp['z'];
-		$tmp['w'] = ($tmp['w'] + $this->_w) / 2;
+		$tmp['w'] = $this->_w - $tmp['w'];
 		$t = new Vertex(array ('x' => $tmp['x'], 'y' => $tmp['y'], 'z' => $tmp['z']));
 		return new Vector(array ('dest' => $t));/*returns a vector*/
 	}
