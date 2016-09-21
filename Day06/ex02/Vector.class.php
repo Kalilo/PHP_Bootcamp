@@ -41,15 +41,15 @@ Class Vector {
 	}
 	/*Vector Calculations*/
 	public function magnitude() {
-		$tmp = this->sub(_orig);
 		//return (float);
-		return (sqrt(pow($tmp::get(array('x')), 2) + pow($tmp::get(array('y')), 2)));
+		return (sqrt(pow($this->_x, 2) + pow($this->_y, 2)));
 	}
 	public function normalize() {
 		
 		//return (Vector);
 	}
 	public function add( Vector $rhs ) {
+		
 		//return (Vector);
 	}
 	public function sub( Vector $rhs ) {
