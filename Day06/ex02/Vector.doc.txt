@@ -44,7 +44,7 @@ Returns a normalized version of the current vector.
  Takes in a scale, and returns a vector of the scaled result of the current vector.
 
  function dotProduct( Vector $rhs );
- Takes in a vector, and return a vector of the dotProduct between the current
+ Takes in a vector, and return a float product between the current
  vector and the given vector, using the right-hand-side technique.
 
  function cos( Vector $rhs );

@@ -53,5 +53,6 @@
 		public function mult($value) {
 			return new Color(array('red' => ($this->red * $value), 'green' => ($this->green * $value), 'blue' => ($this->blue * $value)));	
 		}
+		/*Other*/
 	}
 ?>

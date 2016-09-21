@@ -15,20 +15,23 @@ class Vertex {
 
 	/* Class Specific Methods */
 
-	public function request( array $args)
+	public function request( array $req_args)
 	{
-		$return;
-		if (array_key_exists('x', $args))
-			$return['x'] = $this->_x;
-		if (array_key_exists('y', $args))
-			$return['y'] = $this->_y;
-		if (array_key_exists('z', $args))
-			$return['z'] = $this->_z;
-		if (array_key_exists('w', $args))
-			$return['w'] = $this->_w;
-		if (array_key_exists('color', $args))
-			$return['color'] = $this->_color;
-		return ($return);
+		$ret = array('x' => 0, 'y' => 0, 'z' => 0, 'w' => 1, 'color' => NULL);
+		foreach ($req_args as $req)
+		{
+			if ($req == 'x')
+				$ret['x'] = $this->_x;
+			if ($req == 'y')
+				$ret['y'] = $this->_y;
+			if ($req == 'z')
+				$ret['z'] = $this->_z;
+			if ($req == 'w')
+				$ret['w'] = $this->_w;
+			if ($req == 'color')
+				$ret['color'] = $this->_color;
+		}
+		return ($ret);
 	}
 
 	public function get( $arg )
@@ -36,13 +39,13 @@ class Vertex {
 		$tmp = NULL;
 		if ($arg = 'x')
 			$tmp = $this->x;
-		if ($arg = 'y')
+		else if ($arg = 'y')
 			$tmp = $this->y;
-		if ($arg = 'z')
+		else if ($arg = 'z')
 			$tmp = $this->z;
-		if ($arg = 'w')
+		else if ($arg = 'w')
 			$tmp = $this->w;
-		if ($arg = 'color')
+		else if ($arg = 'color')
 			return ($tmp);
 	}
 
