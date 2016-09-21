@@ -4,7 +4,7 @@ Class Vector {
 	private $_x;
 	private $_y;
 	private $_z;
-	private $_w;
+	private $_w = 0;
 	private $_color;
 	public static $verbose = FALSE;
 	/*Standard Basic Methods*/
@@ -13,7 +13,7 @@ Class Vector {
 	}
 	public function __toString() {
 		if (self::$verbose == TRUE)
-			return ("Vector( x:{$this->_x}, y:{$this->_y}, z:{$this->_z}, w:{$this->_w}, color:{$this->_color})");
+			return ("Vector( x:{$this->_x}, y:{$this->_y}, z:{$this->_z}, w:{$this->_w}, {$this->_color})");
 		return ("Vector( x:{$this->_x}, y:{$this->_y}, z:{$this->_z}, w:{$this->_w} )");
 	}
 	public function request( array $req_args)
@@ -27,8 +27,8 @@ Class Vector {
 				$ret['y'] = $this->_y;
 			else if ($req == 'z')
 				$ret['z'] = $this->_z;
-			else if ($req == 'w')
-				$ret['w'] = $this->_w;
+			/*else if ($req == 'w')
+				$ret['w'] = $this->_w;to be added at a later stage*/
 			else if ($req == 'color')
 				$ret['color'] = $this->_color;
 		}
@@ -44,7 +44,7 @@ Class Vector {
 			$this->_x = $dest['x'] - $orig['x'];
 			$this->_y = $dest['y'] - $orig['y'];
 			$this->_z = $dest['z'] - $orig['z'];
-			$this->_w = $dest['w'] - $orig['w'];
+			/*$this->_w = $dest['w'] - $orig['w'];to be added at a later stage*/
 			$this->_color = $dest['color'];
 		}
 		else if (array_key_exists('dest', $kwargs)) {
@@ -52,8 +52,8 @@ Class Vector {
 			$this->_x = $dest['x'];
 			$this->_y = $dest['y'];
 			$this->_z = $dest['z'];
-			$this->_w = $dest['w'];
-			//$this->_color = $dest['color']->get('rgb');
+			/*$this->_w = $dest['w'];to be added at a later stage*/
+			$this->_color = $dest['color'];
 		}
 		else
 			print('Error creating vector: No dest given.' . PHP_EOL);
@@ -82,7 +82,7 @@ Class Vector {
 		$tmp['x'] += $this->_x;
 		$tmp['y'] += $this->_y;
 		$tmp['z'] += $this->_z;
-		$tmp['w'] += $this->_w;
+		/*$tmp['w'] += $this->_w;to be added at a later stage*/
 		$t = new Vertex(array ('x' => $tmp['x'], 'y' => $tmp['y'], 'z' => $tmp['z']));
 		return new Vector(array ('dest' => $t));/*returns a vector*/
 	}
@@ -91,7 +91,7 @@ Class Vector {
 		$tmp['x'] = $this->_x - $tmp['x'];
 		$tmp['y'] = $this->_y - $tmp['y'];
 		$tmp['z'] = $this->_z - $tmp['z'];
-		$tmp['w'] = $this->_w - $tmp['w'];
+		/*$tmp['w'] = $this->_w - $tmp['w']; to be added at a later stage*/
 		$t = new Vertex(array ('x' => $tmp['x'], 'y' => $tmp['y'], 'z' => $tmp['z']));
 		return new Vector(array ('dest' => $t));/*returns a vector*/
 	}
