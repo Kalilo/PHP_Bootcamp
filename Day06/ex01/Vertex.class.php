@@ -1,14 +1,16 @@
 <?php
- 
+ 	
+	 require_once 'Color.class.php';
+
 class Vertex {
 
 	/* Variables */
 
-    private $_x = 0;
-	private $_y = 0;
-	private $_z = 0;
-	private $_w = 1;
-	private $_color = 0;
+    private $_x = 0.0;
+	private $_y = 0.0;
+	private $_z = 0.0;
+	private $_w = 1.0;
+	private $_color = NULL;
 	public static $verbose = FALSE;
 
 	/* Class Specific Methods */
@@ -26,6 +28,7 @@ class Vertex {
 			$return['w'] = $this->_w;
 		if (array_key_exists('color', $kwargs))
 			$return['color'] = $this->_color;
+		return ($return);
 	}
 
 	public function modify( array $kwargs )
@@ -38,15 +41,15 @@ class Vertex {
 			$this->_z   = $kwargs['z'];
 		if (array_key_exists('w', $kwargs))
 			$this->_w   = $kwargs['w'];
-		if (array_key_exists('color', $kwargs))
+		if (array_key_exists('color', $kwargs) && is_int($kwargs['color']) === TRUE)
 			$this->_color = new Color (array ('rgb' => $kwargs['color']));
-		else
-			$this->_color = new Color (array('rgb' => 0xFFFFFF));
+		if (array_key_exists('color', $kwargs))
+			$this->_color = $kwargs['color'];
 		if (self::$verbose == TRUE)
 			print($this . PHP_EOF);
 	}
 
-	/*Basic Class Functions */
+	/* Basic Class Functions */
 
     public function doc() 
 	{ 
@@ -59,7 +62,7 @@ class Vertex {
 	function __toString()
 	{
 		if (self::$verbose == TRUE)
-			return ("Vertex( x: {$this->_x}, y:{$this->_y}, z: {$this->_z}, w: {$this->_w} ), {$this->_color})");
+			return ("Vertex( x: {$this->_x}, y:{$this->_y}, z: {$this->_z}, w: {$this->_w} , {$this->_color})");
 		return ("Vertex( x: {$this->_x}, y:{$this->_y}, z: {$this->_z}, w: {$this->_w} )");
 	}
 
@@ -73,8 +76,12 @@ class Vertex {
 		}
 		if (array_key_exists('w', $kwargs))
 			$this->_w   = $kwargs['w'];
-		if (array_key_exists('color', $kwargs))
+		if (array_key_exists('color', $kwargs) && is_int($kwargs['color']) === TRUE)
 			$this->_color = new Color (array ('rgb' => $kwargs['color']));
+		else if (array_key_exists('color', $kwargs))
+			$this->_color = $kwargs['color'];
+		else
+			$this->_color = new Color (array ('rgb' => 0x00FFFFFF));
 		if (self::$verbose == TRUE)
 			print("$this constructed." . PHP_EOL);
 	}
@@ -83,8 +90,8 @@ class Vertex {
 	{
 		if (self::$verbose == TRUE)
 			print("$this destructed." . PHP_EOL);
-		unset($red, $green, $blue, $verbose);
+		unset($_r, $_g, $_b, $_w, $_color, $verbose);
 	}
 
-} 
+} 		
 ?>
