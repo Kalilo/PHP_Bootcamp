@@ -15,18 +15,18 @@ class Vertex {
 
 	/* Class Specific Methods */
 
-	public function request( array $kwargs)
+	public function request( array $args)
 	{
 		$return;
-		if (array_key_exists('x', $kwargs))
+		if (array_key_exists('x', $args))
 			$return['x'] = $this->_x;
-		if (array_key_exists('y', $kwargs))
+		if (array_key_exists('y', $args))
 			$return['y'] = $this->_y;
-		if (array_key_exists('z', $kwargs))
+		if (array_key_exists('z', $args))
 			$return['z'] = $this->_z;
-		if (array_key_exists('w', $kwargs))
+		if (array_key_exists('w', $args))
 			$return['w'] = $this->_w;
-		if (array_key_exists('color', $kwargs))
+		if (array_key_exists('color', $args))
 			$return['color'] = $this->_color;
 		return ($return);
 	}
