@@ -45,8 +45,7 @@ Class Vector {
 			$this->_y = $dest['y'] - $orig['y'];
 			$this->_z = $dest['z'] - $orig['z'];
 			$this->_w = ($dest['w'] + $orig['w']) / 2;
-			$this->_color = ($dest['color']->get('rgb') + $orig['color']->get('rgb')) / 2;
-			//$this->_color = new Color(array ('rgb' => ($dest['color']->get('rgb') + $orig['color']->get('rgb')) / 2));
+			$this->_color = $dest['color'];
 		}
 		else if (array_key_exists('dest', $kwargs)) {
 			$dest = $kwargs['dest']->request(array('x', 'y', 'z', 'w'));
@@ -128,28 +127,13 @@ Class Vector {
 		return ($dot) / ($len1 * $len2); /*returns a float*/
 	}
 	public function crossProduct( Vector $rhs ) {
-		/*
-		double	old_x;
-		double	old_y;
-
-		old_x = v1->x;
-		old_y = v1->y;
-		v1->x = v2->y * v1->z - v2->z * old_y;
-		v1->y = v2->z * old_x - v2->x * v1->z;
-		v1->z = v2->x * old_y - v2->y * old_x;
-		*/
-	//	$tmp = $rhs->request(array ('x', 'y', 'z'));/*may have coded the wrong way around.*/
-	/*	$x = $tmp['x'];
-		$y = $tmp['y'];
-		$tmp['x'] = $this->y * $tmp['z'] - $this->z * $y;
-		$tmp['y'] = $this->z * $x - $this->x * $tmp['z'];
-		$tmp['y'] = $this->x * $x - $this->y * $y;*/
 		$tmp = $rhs->request(array ('x', 'y', 'z'));
 		$old_x = $this->x;
 		$old_y = $this->y;
-		$x = 
-
-		$t = new Vertex(array ('x' => $tmp['x'], 'y' => $tmp['y'], 'z' => $tmp['z']));
+		$x = $tmp['y'] * $this->_z - $tmp['z'] * $old_y;
+		$y = $tmp['z'] * $old_x - $tmp['x'] * $this['z'];
+		$z = $tmp['x'] * $old_y - $tmp['y'] * $old_y;
+		$t = new Vertex(array ('x' => $x, 'y' => $y, 'z' => $z));
 		return new Vector(array ('dest' => $t));/*returns a vector*/
 	}
 }
