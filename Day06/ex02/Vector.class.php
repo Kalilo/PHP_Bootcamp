@@ -122,17 +122,17 @@ Class Vector {
 	public function cos( Vector $rhs ) {
 		$tmp = $rhs->request(array ('x', 'y', 'z'));
 		$len2 = sqrt(($tmp['x'] * $tmp['x']) + ($tmp['y'] * $tmp['y']) + ($tmp['z'] * $tmp['z']));
-		$len1 = sqrt(($this->x * $this->x) + ($this->y * $this->y) + ($this->z * $this->z));
-		$dot = $rhs->dotProduct($rhs);
+		$len1 = sqrt(($this->_x * $this->_x) + ($this->_y * $this->_y) + ($this->_z * $this->_z));
+		$dot = $rhs->dotProduct($this);
 		return ($dot) / ($len1 * $len2); /*returns a float*/
 	}
 	public function crossProduct( Vector $rhs ) {
 		$tmp = $rhs->request(array ('x', 'y', 'z'));
-		$old_x = $this->x;
-		$old_y = $this->y;
-		$x = $tmp['y'] * $this->_z - $tmp['z'] * $old_y;
-		$y = $tmp['z'] * $old_x - $tmp['x'] * $this['z'];
-		$z = $tmp['x'] * $old_y - $tmp['y'] * $old_y;
+		$old_x = $this->_x;
+		$old_y = $this->_y;
+		$x = ($tmp['y'] * $this->_z - $tmp['z'] * $old_y) * -1;
+		$y = ($tmp['z'] * $old_x - $tmp['x'] * $this->_z) * -1;
+		$z = ($tmp['x'] * $old_y - $tmp['y'] * $old_x) * -1;
 		$t = new Vertex(array ('x' => $x, 'y' => $y, 'z' => $z));
 		return new Vector(array ('dest' => $t));/*returns a vector*/
 	}
