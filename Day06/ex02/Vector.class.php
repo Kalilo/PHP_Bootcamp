@@ -1,8 +1,10 @@
 <?php
 Class Vector {
 	/*Variables*/
-	private $_dest;
-	private $_orig;
+	private $_x;
+	private $_y;
+	private $_z;
+	private $_w;
 	public  $verbose = FALSE;
 	/*Standard Basic Methods*/
 	public static function doc() {
@@ -13,12 +15,23 @@ Class Vector {
 	}
 	/*Constructor and Destructor*/
 	public function __construct(array $kwargs) {
-		if (array_key_exists('dest', $kwargs)) {
-			$this->_dest = $kwargs['dest'];
+		if (array_key_exists('orig', $kwargs) && array_key_exists('dest', $kwargs)) {
+			$orig = $kwargs['orig']::get(array('x', 'y', 'z', 'w'));
+			$dest = $kwargs['dest']::get(array('x', 'y', 'z', 'w'));
+			$this->_x = $dest['x'] - $orig['x'];
+			$this->_y = $dest['y'] - $orig['y'];
+			$this->_z = $dest['z'] - $orig['z'];
+			$this->_w = ($dest['w'] + $orig['w']) / 2;
 		}
-		if (array_key_exists('orig', $kwargs)) {
-			$this->_orig = $kwargs['orig'];
+		else if (array_key_exists('dest', $kwargs)) {
+			$dest = $kwargs['dest']::get(array('x', 'y', 'z', 'w'));
+			$this->_x = $dest['x'];
+			$this->_y = $dest['y'];
+			$this->_z = $dest['z'];
+			$this->_w = $dest['w'];
 		}
+		else
+			die('Error creating vector: No dest given.' . PHP_EOL);
 		if (self::$verbose == TRUE)
 			print($this . " construced." . PHP_EOF);
 	}
@@ -28,9 +41,12 @@ Class Vector {
 	}
 	/*Vector Calculations*/
 	public function magnitude() {
+		$tmp = this->sub(_orig);
 		//return (float);
+		return (sqrt(pow($tmp::get(array('x')), 2) + pow($tmp::get(array('y')), 2)));
 	}
 	public function normalize() {
+		
 		//return (Vector);
 	}
 	public function add( Vector $rhs ) {
