@@ -1,119 +1,142 @@
 <?php
- 	
-	 require_once 'Matrix.class.php';
 
-class Matrix {
-
-	/* Constants */
-
-	const IDENTITY   = 1;
-	const SCALE      = 2;
-	const RX         = 3;
-	const RY         = 4;
-	const RZ         = 5;
-	const PROJECTION = 6;
-
-	/* Variables */
-
-    private $_x = 0.0;
-	private $_y = 0.0;
-	private $_z = 0.0;
-	private $_w = 1.0;
-	private $_color = NULL;
+Class Matrix 
+{
+	/*Constants*/
+	const IDENTITY = 1;
+	const TRANSLATION = 2;
+	const SCALE = 3;
+	const RX = 4;
+	const RY = 5;
+	const RZ = 6;
+	const PROJECTION = 7;
+	/*Public Variables*/
 	public static $verbose = FALSE;
-
-	/* Class Specific Methods */
-
-	//Matrix mult( Matrix $rhs )
-	//Vertex transformVertex( Vertex $vtx )
-
-	private function _mult( Matrix $rhs )
-	{
-
-	}
-
-	private function _transformVertex( Vertex $vtx )
-	{
-
-	}
-
-	public function request( array $args)
-	{
-		$return;
-		if (array_key_exists('x', $args))
-			$return['x'] = $this->_x;
-		if (array_key_exists('y', $args))
-			$return['y'] = $this->_y;
-		if (array_key_exists('z', $args))
-			$return['z'] = $this->_z;
-		if (array_key_exists('w', $args))
-			$return['w'] = $this->_w;
-		if (array_key_exists('color', $args))
-			$return['color'] = $this->_color;
-		return ($return);
-	}
-
-	public function modify( array $kwargs )
-	{
-		if (array_key_exists('x', $kwargs))
-			$this->_x = $kwargs['x'];
-		if (array_key_exists('y', $kwargs))
-			$this->_y   = $kwargs['y'];
-		if (array_key_exists('z', $kwargs))
-			$this->_z   = $kwargs['z'];
-		if (array_key_exists('w', $kwargs))
-			$this->_w   = $kwargs['w'];
-		if (array_key_exists('color', $kwargs) && is_int($kwargs['color']) === TRUE)
-			$this->_color = new Color (array ('rgb' => $kwargs['color']));
-		if (array_key_exists('color', $kwargs))
-			$this->_color = $kwargs['color'];
-		if (self::$verbose == TRUE)
-			print($this . PHP_EOF);
-	}
-
-	/* Basic Class Functions */
-
-    public function doc() 
-	{ 
-		if (file_exists("Matrix.doc.txt"))
-        	return (file_get_contents("Matrix.doc.txt"));
-		else
-			return ("Matrix.doc.txt is missing. Unable to print class documentation."); 
-    }
-
-	function __toString()
-	{
-		if (self::$verbose == TRUE)
-			return ("Vertex( x: {$this->_x}, y:{$this->_y}, z: {$this->_z}, w: {$this->_w} , {$this->_color})");
-		return ("Vertex( x: {$this->_x}, y:{$this->_y}, z: {$this->_z}, w: {$this->_w} )");
-	}
-
-	function __construct( array $kwargs )
-	{
-		if (array_key_exists('x', $kwargs) && array_key_exists('y', $kwargs) && array_key_exists('z', $kwargs))
-		{
-			$this->_x = $kwargs['x'];
-			$this->_y = $kwargs['y'];
-			$this->_z = $kwargs['z'];
+	public $preset = array(array(1, 0, 0, 0), array(0, 1, 0, 0), array(0, 0, 1, 0), array(0, 0, 0, 1));
+	/*Constructor and Destructor*/
+	public function __construct(array $kwargs) {
+		if ($kwargs['preset'] == self::IDENTITY)
+			$tmp = "IDENTITY";
+		else if ($kwargs['preset'] == self::TRANSLATION) {
+			$tmp = "TRANSLATION";
+			$this->preset[0][3] = $kwargs['vtc']->getX();
+			$this->preset[1][3] = $kwargs['vtc']->getY();
+			$this->preset[2][3] = $kwargs['vtc']->getZ();
 		}
-		if (array_key_exists('w', $kwargs))
-			$this->_w   = $kwargs['w'];
-		if (array_key_exists('color', $kwargs) && is_int($kwargs['color']) === TRUE)
-			$this->_color = new Color (array ('rgb' => $kwargs['color']));
-		else if (array_key_exists('color', $kwargs))
-			$this->_color = $kwargs['color'];
-		else
-			$this->_color = new Color (array ('rgb' => 0x00FFFFFF));
+		else if ($kwargs['preset'] == self::SCALE) {
+			$tmp = "SCALE";
+			$this->preset[0][0] = $kwargs['scale'];
+			$this->preset[1][1] = $kwargs['scale'];
+			$this->preset[2][2] = $kwargs['scale'];
+		}
+		else if ($kwargs['preset'] == self::RX) {
+			$tmp = "OX ROTATION";
+			$this->preset[2][1] = sin($kwargs['angle']);
+			$this->preset[2][2] = cos($kwargs['angle']);
+			$this->preset[1][1] = cos($kwargs['angle']);
+			$this->preset[1][2] = -sin($kwargs['angle']);
+		}
+		else if ($kwargs['preset'] == self::RY) {
+			$tmp = "OY ROTATION";
+			$this->preset[2][0] = -sin($kwargs['angle']);
+			$this->preset[0][0] = cos($kwargs['angle']);
+			$this->preset[0][2] = sin($kwargs['angle']);
+			$this->preset[2][2] = cos($kwargs['angle']);
+		}
+		else if ($kwargs['preset'] == self::RZ) {
+			$tmp = "OZ ROTATION";
+			$this->preset[0][0] = cos($kwargs['angle']);
+			$this->preset[0][1] = -sin($kwargs['angle']);
+			$this->preset[1][0] = sin($kwargs['angle']);
+			$this->preset[1][1] = cos($kwargs['angle']);
+		}
+		else if ($kwargs['preset'] == self::PROJECTION) {
+			$tmp = "PROJECTION";
+			$near = $kwargs['near'];
+			$far = $kwargs['far'];
+			$scale = tan(deg2rad($kwargs['fov']) / 2);
+			$scale2 = $scale;
+			$neg_scale = -$scale2;
+			$r = $scale * $kwargs['ratio'];
+			$l = -$r;
+			$this->preset[0][0] = 2 *  $near / ($r - $l);
+			$this->preset[1][1] = 2 * $near / ($scale2 - $neg_scale);
+			$this->preset[0][2] = ($r + $l) / ($r - $l);			
+			$this->preset[1][2] = ($scale2 + $neg_scale) / ($scale2 - $neg_scale);
+			$this->preset[2][2] = -($far + $near) / ($far - $near);
+			$this->preset[3][2] = -1;
+			$this->preset[2][3] = -2 * $far * $near / ($far - $near);
+			$this->preset[3][3] = 0;
+		}
 		if (self::$verbose == TRUE)
-			print("$this constructed." . PHP_EOL);
+			echo "Matrix ".$tmp." instance construced" . PHP_EOL;
 	}
-
-	function __destruct()
-	{
-		if (self::$verbose == TRUE)
-			print("$this destructed." . PHP_EOL);
-		unset($_r, $_g, $_b, $_w, $_color, $verbose);
+	public function __destruct() {
+		if (self::$verbose == TRUE) {
+			echo "Matrix instance destructed" . PHP_EOL;
+			return ;
+		}
 	}
-
-} 		
+	/*To String*/
+	private function _format_num($nb) {
+		return number_format($nb, 2);
+	}
+	public function __toString() {
+		return ("M | vtcX | vtcY | vtcZ | vtx0" . PHP_EOL
+			   ."-----------------------------" . PHP_EOL
+			   ."x | ".$this->_format_num($this->preset[0][0])." | ".
+			   $this->_format_num($this->preset[0][1])." | ".
+			   $this->_format_num($this->preset[0][2])." | ".
+			   $this->_format_num($this->preset[0][3]). PHP_EOL
+			   ."y | ".$this->_format_num($this->preset[1][0])." | ".
+			   $this->_format_num($this->preset[1][1])." | ".
+			   $this->_format_num($this->preset[1][2])." | ".
+			   $this->_format_num($this->preset[1][3]). PHP_EOL
+			   ."z | ".$this->_format_num($this->preset[2][0])." | ".
+			   $this->_format_num($this->preset[2][1])." | ".
+			   $this->_format_num($this->preset[2][2])." | ".
+			   $this->_format_num($this->preset[2][3]). PHP_EOL
+			   ."w | ".$this->_format_num($this->preset[3][0]).
+			   " | ".$this->_format_num($this->preset[3][1])." | ".
+			   $this->_format_num($this->preset[3][2])." | ".
+			   $this->_format_num($this->preset[3][3]));
+	}
+	/*Standard*/
+	public function transformVertex(Vertex $vtx) {
+		$matrix_vtx = array($vtx->getX(), $vtx->getY(), $vtx->getZ());
+		$matrix = array(0, 0, 0);
+		$k = -1;
+		while (++$k < 3) {
+			$k = -1;
+			while (++$k < 3) {
+				$matrix[$k] = $matrix[$k] + $this->preset[$k][$k] * $matrix_vtx[$k];
+			}
+			$matrix[$k] = $matrix[$k] + $this->preset[$k][$k];
+		}
+		$new_vtx = new Vertex(array('x' => $matrix[0], 'y' => $matrix[1], 'z' => $matrix[2]));
+		return ($new_vtx);
+	}
+	public function mult(Matrix $rhs) {
+		$matrix = clone $rhs;
+		$matrix->preset = array(array(0, 0, 0, 0), array(0, 0, 0, 0), array(0, 0, 0, 0), array(0, 0, 0, 0));
+		$k = -1;
+		while (++$k < 4) {
+			$l = -1;
+			while (++$l < 4) {
+				$m = -1;
+				while (++$m < 4)
+					$matrix->preset[$k][$l] = $matrix->preset[$k][$l] + $this->preset[$k][$m] * $rhs->preset[$m][$l];
+			}
+		}
+		return ($matrix);
+	}
+	/*Get*/
+	public function getPreset() {
+		return print_r($this->_preset);
+	}
+	/*Doc*/
+	public static function doc() {
+		return (file_get_contents("Matrix.doc.txt"));
+	}
+}
 ?>

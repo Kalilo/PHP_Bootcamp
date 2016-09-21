@@ -1,31 +1,31 @@
-<- Color -------------------------------------------------------------------------------
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Color.doc.txt                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: khansman <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/09/20 10:34:43 by khansman          #+#    #+#              #
+#    Updated: 2016/09/20 10:34:48 by khansman         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-The Class Color is designed to handle the storing and manipulation of rgb colour values.
+<- Color -----------------------------------------------------------------------
 
-Construction of a Color Class requires either 3 positive single byte integers from 
-0 to 255 or a single 8 byte positive integer representing the desired colour to be 
-entered into an array with the relevant keyword as shown below:
+This class is used for easy colour manipulation.
+The class breaks down a colour into it's rgb values,
+	which can be separatly handled.
 
-$newcolour = new Color( array ( 'red' => 0, 'green' => 0xff   , 'blue' => 255    ) );
-$newcolour = new Color( array ( 'rgb' => 0 ) ); 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function add($colour);
+Takes a given colour and adds it to the saved colour.
 
-The class provides the following methods :
+function sub($colour);
+Takes a given colour and subtracts it from the saved colour.
 
-	Color   add( Color $rgb );
-		Adds each color constituent to the the given Color colour 
-	constituents and returns a new Color class instance with the 
-	result.
+function mult($value);
+Takes a given value and multiplies the saved colour by that value.
 
-	Color   sub( Color $rgb );
-		Substracts each colour constituent from the given Color colour 
-	constituent given and returns a new Color class instance with the 
-	result.
-
-	Color   mult( $factor );
-		Multiplies each colour constituent by $factor and returns a new 
-	Color class instance with the result.
-
-Author: ghavenga
-------------------------------------------------------------------------------- Color ->
+© khansman
+----------------------------------------------------------------------- Color ->

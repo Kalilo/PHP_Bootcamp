@@ -1,7 +1,7 @@
 <- Vertex ------------------------------------------------------------------------------
 
-The Class Vertex is designed to handle the storing and manipulation of vertex 
-coordinates and their associated colour value.
+The Class Vertex is designed to handle the storing and manipulation of matrices
+and their associated values.
 
 Construction of a Vertex Class requires 3 integers representing the 'x', 'y' and 'z'
 coordinates of the Vertex, and may optionally be initialized with a homogenous vertex
