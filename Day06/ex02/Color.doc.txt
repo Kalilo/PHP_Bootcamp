@@ -1,0 +1,31 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Color.doc.txt                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: khansman <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/09/20 10:34:43 by khansman          #+#    #+#              #
+#    Updated: 2016/09/20 10:34:48 by khansman         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+<- Color -----------------------------------------------------------------------
+
+This class is used for easy colour manipulation.
+The class breaks down a colour into it's rgb values,
+	which can be separatly handled.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+function add($colour);
+Takes a given colour and adds it to the saved colour.
+
+function sub($colour);
+Takes a given colour and subtracts it from the saved colour.
+
+function mult($value);
+Takes a given value and multiplies the saved colour by that value.
+
+© khansman
+----------------------------------------------------------------------- Color ->

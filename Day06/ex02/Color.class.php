@@ -54,5 +54,18 @@
 			return new Color(array('red' => ($this->red * $value), 'green' => ($this->green * $value), 'blue' => ($this->blue * $value)));	
 		}
 		/*Other*/
+		public function get( $arg )
+		{
+			$tmp = NULL;
+			if ($arg == 'red')
+				$tmp = $this->red;
+			else if ($arg == 'green')
+				$tmp = $this->green;
+			else if ($arg == 'blue')
+				$tmp = $this->blue;
+			else if ($arg == 'rgb')
+				$tmp = $this->red << 16 + $this->green << 8 + $this->blue;
+			return ($tmp);
+		}
 	}
 ?>

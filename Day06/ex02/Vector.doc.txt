@@ -12,9 +12,49 @@
 
 <- Vector ----------------------------------------------------------------------
 
-This class is used for calculations involving vectors.
+This class is used for storing vectors, and easy vector calculations.
+
+The object requires an array containing verticies of the desired destination
+(required), and the desired origin (optional).
+
+Eg. new Vector( array( 'dest' => $dest_vertex ) );
+
+Verbose mode is avaliable by setting the verbose variable to true.
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+function magnitude();
+Returns the magnitude of the current vector.
+
+function normalize();
+Returns a normalized version of the current vector.
+
+ function add( Vector $rhs );
+ Returns the sum of the current vector, and a given vector, using the right-
+ hand-side technique.
+
+ function sub( Vector $rhs );
+ Returns the result of the given vector subtraced from the current vector, 
+ and a given vector, using the right-hand-side technique.
+
+ function opposite();
+ Returns a vector of directly opposite magnitude and direction to the current vector.
+
+ function scalarProduct( $k );
+ Takes in a scale, and returns a vector of the scaled result of the current vector.
+
+ function dotProduct( Vector $rhs );
+ Takes in a vector, and return a float product between the current
+ vector and the given vector, using the right-hand-side technique.
+
+ function cos( Vector $rhs );
+ Takes in a vector, and returns the cosine angle between the current vector,
+ and the given vector, using the right-hand-side technique.
+
+ function crossProduct( Vector $rhs );
+ Takes in a vector, and returns a vector of the cross product between the current
+ vector, and the given vector.
+
 
 © khansman
 ---------------------------------------------------------------------- Vector ->

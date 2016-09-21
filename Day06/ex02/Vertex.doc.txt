@@ -1,0 +1,31 @@
+<- Vertex ------------------------------------------------------------------------------
+
+The Class Vertex is designed to handle the storing and manipulation of vertex 
+coordinates and their associated colour value.
+
+Construction of a Vertex Class requires 3 integers representing the 'x', 'y' and 'z'
+coordinates of the Vertex, and may optionally be initialized with a homogenous vertex
+coordinate 'w' and a 'Color' RGB value or 'Color' object. (see Color.doc.txt for usage). 
+These values must be passed to the Vertex Class using a kew worded array as show below:
+
+$newvertex = 
+new Vertex( array ( 'x' => 0, 'y' => 0, 'z' => 0, 'w' => 0, 'color' => 0x00FFFFFF) );
+$newvertex = 
+new Vertex( array ( 'x' => 0, 'y' => 0, 'z' => 0, 'w' => 0, 'color' => $color_obj) );
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The class provides the following methods :
+
+	Vertex   request( array $args ); -(x, y, z, w, color)-
+		-Requests the stored variables of the Vertex Object according to the 
+	variable names given in the Array arguement.
+
+	Vertex   modify( array $kwargs );  -(x, y, z, w, color)-
+		-Modifies the stored variables of the Vertex Object according to the 
+	keywords given in the Key Worded Array $kwargs and their respective values. 
+	Variables not designated by the appropriate keyword in $kwargs remain 
+	unchanged.
+
+Author: ghavenga
+------------------------------------------------------------------------------ Vertex ->
