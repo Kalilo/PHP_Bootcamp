@@ -1,80 +1,71 @@
 <?php
- 
-class Color {
+	class Color {
+		/*Variables*/
+		public $red = 0;
+		public $green = 0;
+		public $blue = 0;
+		public static $verbose = FALSE;
 
-	/* Variables */
-
-    public $red = 0;
-	public $green = 0;
-	public $blue = 0;
-	public static $verbose = FALSE;
-
-	/* Class Specific Methods */
-
-	public function add( Color $colour )
-	{
-		$newcolour = new Color ( array ('red' => $colour->red + $this->red, 'green' => $colour->green + $this->green, 'blue' => $colour->blue + $this->blue));
-		return($newcolour);
-	}
-
-	public function sub( Color $colour )
-	{
-		$newcolour = new Color ( array ('red' => $colour->red - $this->red, 'green' => $colour->green - $this->green, 'blue' => $colour->blue - $this->blue));
-		return($newcolour);
-	}
-
-	public function mult( $factor )
-	{
-		return(new Color ( array ('red' => $this->red * $factor, 'green' => $this->red * $factor, 'blue' => $this->red * $factor)));
-	}
-
-	private function _legitimize ()
-	{
-		$this->red =   abs(round($this->red, 0) % 256);
-		$this->green = abs(round($this->green, 0) % 256);
-		$this->blue =  abs(round($this->blue, 0) % 256);
-	}
-
-	/*Basic Class Functions */
-
-    public function doc() 
-	{ 
-		if (file_exists("Color.doc.txt"))
-        	return (file_get_contents("Color.doc.txt"));
-		else
-			return ("Color.doc.txt is missing. Unable to print class documentation."); 
-    }
-
-	function __toString()
-	{
-		return ("Color( red:  {$this->red}, green:  {$this->green}, blue:  {$this->blue} )");
-	}
-
-	function __construct( array $kwargs )
-	{
-		if (array_key_exists('red', $kwargs) && array_key_exists('green', $kwargs) && array_key_exists('blue', $kwargs))
-		{
-			$this->red   = $kwargs['red'];
-			$this->green = $kwargs['green'];
-			$this->blue  = $kwargs['blue'];
+		/*Standard Basic Methods*/
+		public static function doc() {
+			print(file_get_contents("./Color.doc.txt"));
 		}
-		else if (array_key_exists('rgb', $kwargs))
-		{
-			$this->red   = ($kwargs['rgb'] & 0x00FF0000) >> 16;
-			$this->green = ($kwargs['rgb'] & 0x0000FF00) >> 8;
-			$this->blue  = ($kwargs['rgb'] & 0x000000FF);
+		public function __toString() {
+				return ("Color( red:\t{$this->red}, green:\t{$this->green}, blue:\t{$this->blue} )");
 		}
-		$this->_legitimize();
-		if (self::$verbose == TRUE)
-			print("Color( red:  {$this->red}, green:  {$this->green}, blue:  {$this->blue} ) constructed.\n");
+		/*Constructor and Destructor*/
+		public function __construct(array $kwargs) {
+			if (array_key_exists('verbose', $kwargs) || array_key_exists('v', $kwargs))
+				$this->verbose = TRUE;
+			if (array_key_exists('rgb', $kwargs))
+			{
+				$this->red = ($kwargs['rgb'] & 0b00000000111111110000000000000000) >> 16;
+				$this->green = ($kwargs['rgb'] & 0b00000000000000001111111100000000) >> 8;
+				$this->blue = ($kwargs['rgb'] & 0b00000000000000000000000011111111);
+			}
+			if (array_key_exists('red', $kwargs))
+				$this->red = $kwargs['red'];
+			if (array_key_exists('green', $kwargs))
+				$this->green = $kwargs['green'];
+			if (array_key_exists('blue', $kwargs))
+				$this->blue = $kwargs['blue'];
+			$this->_mod();
+			if (self::$verbose == TRUE)
+				print("Color( red:\t{$this->red}, green:\t{$this->green}, blue:\t{$this->blue} ) constructed." . PHP_EOL);
+		}
+		public function __destruct() {
+			if (self::$verbose == TRUE)
+				print("Color( red:\t{$this->red}, green:\t{$this->green}, blue:\t{$this->blue} ) destructed." . PHP_EOL);
+				
+		}
+		/*Methods*/
+		private function _mod() {
+			$this->red = round($this->red, 0) % 256;
+			$this->green = round($this->red, 0) % 256;
+			$this->blue = round($this->red, 0) % 256;
+		}
+		public function add(Color $col) {
+			return new Color(array('red' => ($this->red + $col->red), 'green' => ($this->green + $col->green), 'blue' => ($this->blue + $col->blue)));
+		}
+		public function sub(Color $col) {
+			return new Color(array('red' => ($this->red - $col->red), 'green' => ($this->green - $col->green), 'blue' => ($this->blue - $col->blue)));			
+		}
+		public function mult($value) {
+			return new Color(array('red' => ($this->red * $value), 'green' => ($this->green * $value), 'blue' => ($this->blue * $value)));	
+		}
+		/*Other*/
+		public function get( $arg )
+		{
+			$tmp = NULL;
+			if ($arg == 'red')
+				$tmp = $this->red;
+			else if ($arg == 'green')
+				$tmp = $this->green;
+			else if ($arg == 'blue')
+				$tmp = $this->blue;
+			else if ($arg == 'rgb')
+				$tmp = $this->red << 16 + $this->green << 8 + $this->blue;
+			return ($tmp);
+		}
 	}
-
-	function __destruct()
-	{
-		if (self::$verbose == TRUE)
-			print("Color( red:  {$this->red}, green:  {$this->green}, blue:  {$this->blue} ) destructed.\n");
-		unset($red, $green, $blue, $verbose);
-	}
-
-} 
 ?>
