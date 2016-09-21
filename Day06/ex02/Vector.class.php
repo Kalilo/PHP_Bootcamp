@@ -28,7 +28,31 @@ Class Vector {
 	}
 	/*Vector Calculations*/
 	public function magnitude() {
-		//return ();
+		//return (float);
+	}
+	public function normalize() {
+		//return (Vector);
+	}
+	public function add( Vector $rhs ) {
+		//return (Vector);
+	}
+	public function sub( Vector $rhs ) {
+		//return (Vector);
+	}
+	public function opposite() {
+		//return (Vector);
+	}
+	public function scalarProduct( $k ) {
+		//return (Vector);
+	}
+	public dotProduct( Vector $rhs ) {
+		//return (float);
+	}
+	public cos( Vector $rhs ) {
+		//return (flaot);
+	}
+	public function crossProduct( Vector $rhs ) {
+		//return (Vector);
 	}
 }
 ?>
