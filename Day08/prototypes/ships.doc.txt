@@ -1,0 +1,47 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    ships.doc.txt                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: khansman <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/09/22 11:43:48 by khansman          #+#    #+#              #
+#    Updated: 2016/09/22 11:43:51 by khansman         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+<- Ships -----------------------------------------------------------------------
+
+This serves as the main ship class. The class stores a local copy of all major
+factors affecting ships.
+
+The class serves as a solution for all standard calculations involving a ship.
+
+A verbose mode is avaiable by setting the verbose variable to true.
+Additionally an interactive mode is avaiable, which can serve as a basic
+interface as to what changes were made to the ship's state. This can be 
+activated by setting the interact variable to true.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Methods:
+
+getArray();
+Returns an array filled with all variables related to the current ship's state.
+
+getPos();
+Returns an array containing the x and y position of the current ship.
+
+getVel();
+Returns the velocity of the current ship.
+
++++
+
+TakeHit($damage);
+Takes in a variable containing the damage to be delt to the ship, and Returns
+the remaining HP of the ship. This method does take into consideration the
+strength of a ships shield, and appropiately takes it into consideration.
+
+
+© khansman
+----------------------------------------------------------------------- Ships ->
