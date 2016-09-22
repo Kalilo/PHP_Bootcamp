@@ -60,5 +60,8 @@
 			return ($arr);
 		}
 		/*Methods*/
+		public function hit() {
+			//To be continued...
+		}
 	}
 ?>
