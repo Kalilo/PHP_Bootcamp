@@ -1,0 +1,23 @@
+<- Weapon ----------------------------------------------------------------------
+
+This serves as the main weapon class. The class holds all the universal 
+information and methods required to make a functional weapon for the ABB game.
+
+The class cannot be instantiated on it's own and requires a child class to
+define the functionality of the "fire" method in order to function.
+
+A verbose mode is avaiable by setting the static verbose variable to true.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Methods:
+
+getArray();
+Returns an array filled with all variables related to the weapons's state.
+
+fire($map);
+Recieves a map object and returns an integer of the amount of damage the 
+weapon managed to apply to any ships within it's limitations defined by the
+child weapon extending this class.
+
+author: ghavenga
+---------------------------------------------------------------------- Weapon ->
