@@ -11,6 +11,7 @@
 		private $_Shield = NULL;
 		private $_Weapon = NULL;
 		private $_PP = NULL;
+		private $_Bouclier = NULL;
 		/*Variables*/
 		private $_Position = array('x' => 0, 'y' => 0);
 		private $_Velocity = 0;
@@ -33,11 +34,13 @@
 					'Handling = '. self::Handling . PHP_EOL .
 					'Shield = ' . self::Shield . PHP_EOL .
 					'Weapon = ' . self::Weapon . PHP_EOL .
+					'Bouclier = ' .self::Bouclier . PHP_EOL .
 					'PP = '. self::PP . ']' . PHP_EOL);
 			return ('[Ship: {self::Name}]');
 		}
 		/*Constructor and Destructor*/
 		public function __construct(array $kwargs) {
+				/*Ship Details*/
 			if (array_key_exists('name', $kwargs))
 				$this->_Name = $kwargs['name'];
 			if (array_key_exists('size', $kwargs))
@@ -58,8 +61,16 @@
 				$this->_Weapon = $kwargs['weapon'];
 			if (array_key_exists('pp', $kwargs))
 				$this->_PP = $kwargs['pp'];
+				/*Movement and Positioning*/
+			$this->_Position = (array_key_exists('position', $kwargs)) ? $kwargs['position'] : 
+				array('x' => rand(15, 135), 'y' =>rand(15, 85));
+			$this->_Angle = (array_key_exists('angle', $kwargs)) ? $kwargs['angle'] : 0;
+			$this->_Velocity = (array_key_exists('velocity', $kwargs)) ? $kwargs['velocity'] : 0;
+				/*Display*/
 			if (self::$verbose == TRUE)
 				print("Created: " . $this . PHP_EOPL);
+			if (self::$interact == TRUE)
+				print("A new {$this->_Name} vessile has been summoned into existance." . PHP_EOL);
 		}
 		public function __destruct() {
 			if (self::$verbose == TRUE)
