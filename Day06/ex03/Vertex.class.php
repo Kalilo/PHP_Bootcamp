@@ -110,6 +110,26 @@ class Vertex {
 			print("$this destructed." . PHP_EOL);
 		unset($_r, $_g, $_b, $_w, $_color, $verbose);
 	}
-
+	/*Get methods*/
+	public function getX () {
+		$t = $this->_x;
+		return ($t);
+	}
+	public function getY () {
+		$t = $this->_y;
+		return ($t);
+	}
+	public function getZ () {
+		$t = $this->_Z;
+		return ($t);
+	}
+	public function getW () {
+		$t = $this->_w;
+		return ($t);
+	}
+	public function getColor () {
+		$t = $this->_color;
+		return ($t);
+	}
 } 		
 ?>

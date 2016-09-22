@@ -110,6 +110,6 @@ class Vertex {
 			print("$this destructed." . PHP_EOL);
 		unset($_r, $_g, $_b, $_w, $_color, $verbose);
 	}
-
+	/*Get functions*/
 } 		
 ?>
