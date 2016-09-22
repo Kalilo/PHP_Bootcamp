@@ -46,6 +46,10 @@
 			$t = $this->_Position;
 			return ($t);
 		}
+		public function getName() {
+			$t = $this->_Name;
+			return ($t);
+		}
 		public function getCoords() {
 			for ($k = 0; $k < $this->_Size['x']; $k++) {
 				for ($l = 0; $l < $this->_Size['y']; $l++) {
