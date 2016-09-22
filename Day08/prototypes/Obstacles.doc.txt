@@ -1,0 +1,41 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Obstacles.doc.txt                                  :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: khansman <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/09/22 14:35:26 by khansman          #+#    #+#              #
+#    Updated: 2016/09/22 14:35:28 by khansman         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+<- Obstacles -------------------------------------------------------------------
+
+This serves as the main definition class for obstacles. It is really basic,
+and thus can only describe rectangular objects. The object's position is taken
+relative to the origin (0;0).
+
+A verbose mode is avaliable for debugging purposes.
+An interactive mode is also avaliable.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Methods:
+
+getSize();
+Returns an array containing keyed elements for the x and y coordinates.
+
+getPos();
+Returns an array containing keyed elements for the obstacles closest coordinate
+to the origin (0;0).
+
+getName();
+Returns the name of the current obstacle.
+
+getCoords();
+Determines the obstacles coordinates, and returns them in an array of keyed 
+array coordinate x and y.
+
+© khansman
+------------------------------------------------------------------- Obstacles ->
