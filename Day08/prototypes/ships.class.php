@@ -1,5 +1,5 @@
 <?php
-	class Ships {
+		Abstract Class Ships {
 		/*Constants*/
 		private $_Name = NULL;
 		private $_Size = NULL;
@@ -12,6 +12,8 @@
 		private $_Weapon = NULL;
 		private $_PP = NULL;
 		/*Variables*/
+		private $_Position = array('x' => 0, 'y' => 0);
+		private $_Velocity = 0;
 		public static $verbose = FALSE;
 		public static $interact = FALSE;
 		/*Standard Basic Methods*/
@@ -70,6 +72,12 @@
 							'speed' => $this->_Speed, 'handling' => $this->_Handling,
 							'shield' => $this->_Shield, 'weapon' => $this->_Weapon));
 		}
+		public function getPos() {
+			return ($this->_Position);
+		}
+		public function getVel() {
+			return ($this->_Velocity);
+		}
 		/*Clone*/
 		public function __clone() {
 			return (new Ship($this->getArray()));
@@ -91,6 +99,15 @@
 					print("Ship : {$this->_Name} took a hit, reducing it's HP to {$this->_HP}" . PHP_EOL);
 			}
 			return ($this->_HP);
+		}
+		public function InitRound() {
+			//
+		}
+		public function SpendPP($kwargs) {
+			//
+		}
+		public function AdjustVelocity() {
+			//
 		}
 	}
 ?>
