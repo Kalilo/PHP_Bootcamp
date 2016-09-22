@@ -14,6 +14,7 @@
 		/*Variables*/
 		private $_Position = array('x' => 0, 'y' => 0);
 		private $_Velocity = 0;
+		private $_Angle = 0;
 		public static $verbose = FALSE;
 		public static $interact = FALSE;
 		/*Standard Basic Methods*/
