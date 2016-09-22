@@ -42,7 +42,8 @@ Takes in a variable containing the damage to be delt to the ship, and Returns
 the remaining HP of the ship. This method does take into consideration the
 strength of a ships shield, and appropiately takes it into consideration.
 
-If incorrect paramiters are passed, the ship's behavior is undefined.
+If incorrect paramiters are passed to the constructor, then the ship's behavior
+is undefined.
 
 © khansman
 ----------------------------------------------------------------------- Ships ->

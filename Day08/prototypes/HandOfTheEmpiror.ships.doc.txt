@@ -37,7 +37,8 @@ Upon creation the vessile's position (int), angle (nesw), and velocity (int)
 can be set by passing through to it a keyed array containing the required
 details.
 
-If incorrect paramiters are passed, the vessile's behavior is undefined.
+If incorrect paramiters are passed to the constructor, then the vessile's
+behavior is undefined.
 
 © khansman
 ----------------------------------------------------------------------- Ships ->
