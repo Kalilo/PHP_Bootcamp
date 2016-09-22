@@ -29,21 +29,124 @@ require_once  "Weapon.class.php";
 
 		/* Class Specific Methods */
 
-		public function fire($map)
+		public function fire( $kwargs )
 		{
-			$origin = parent::position;
-			
+			if(array_key_exists('char', $kwargs))
+			{
+				if(array_key_exists('x', $kwargs) && array_key_exists('y', $kwargs))
+				{
+					if (array_key_exists('map', $kwargs))
+					{
+						if (array_key_exists('angle', $kwargs))
+						{
+							$yindex = 0;
+							$xindex = 0;
+							$enemyx = NULL;
+							$enemyy = NULL;
+							$dist   = NULL;
+							$damage = 0;
+							while ($kwargs['map'][$yindex])
+							{
+								while ($kwargs['map'][$yindex][$xindex])
+								{
+									if ($kwargs['angle'] == 'n' && $yindex < $kwargs['y'])
+										if ($kwargs['map'][$yindex][$xindex] != $kwargs['char'] || $kwargs['map'][$yindex][$xindex] != '.')
+											if ($yindex > $enemyy)
+											{
+												$enemyx = $xindex;
+												$enemyy = $yindex;
+											}
+									if ($kwargs['angle'] == 'e' && $xindex < $kwargs['x'])
+										if ($kwargs['map'][$yindex][$xindex] != $kwargs['char'] || $kwargs['map'][$yindex][$xindex] != '.')
+											if ($xindex > $enemyx)
+											{
+												$enemyx = $xindex;
+												$enemyy = $yindex;
+											}
+									if ($kwargs['angle'] == 's' && $yindex > $kwargs['y'])
+										if ($kwargs['map'][$yindex][$xindex] != $kwargs['char'] || $kwargs['map'][$yindex][$xindex] != '.')
+											if ($yindex < $enemyy)
+											{
+												$enemyx = $xindex;
+												$enemyy = $yindex;
+											}
+									if ($kwargs['angle'] == 'w' && $xindex > $kwargs['x'])
+										if ($kwargs['map'][$yindex][$xindex] != $kwargs['char'] || $kwargs['map'][$yindex][$xindex] != '.')
+											if ($xindex > $enemyx)
+											{
+												$enemyx = $xindex;
+												$enemyy = $yindex;
+											}
+									$xindex++;
+								}
+								$yindex++;							
+							}
+							if ($enemyx == NULL || $enemyy == NULL)
+							{
+								print("Commander! The $this attempted to fire but the enemy was out of of our firing arc!");
+								return ($damage);
+							}
+							$dist = ($kwargs['x'] - $enemyx)/($kwargs['y'] - $enemyy);
+							if ($dist > LRANGE)
+							{
+								while ($_charge > 0)
+								{
+									$roll += (rand() % 6) + 1;
+									if ($roll > 5)
+									{
+										print("Commander! The $this is firing at the enemy! It rolled a $roll and HIT!");
+										$damage += $roll;
+									}
+									else
+										print("Commander! The $this is firing at the enemy! It rolled a $roll and MISSED!");
+								}
+								return ($damage);
+							}
+							if ($dist > MRANGE)
+							{
+								while ($_charge > 0)
+								{
+									$roll += (rand() % 6) + 1;
+									if ($roll > 4)
+									{
+										print("Commander! The $this is firing at the enemy! It rolled a $roll and HIT!");
+										$damage += $roll;
+									}
+									else
+										print("Commander! The $this is firing at the enemy! It rolled a $roll and MISSED!");
+								}
+								return ($damage);
+							}
+							if ($dist > SRANGE)
+							{
+								while ($_charge > 0)
+								{
+									$roll += (rand() % 6) + 1;
+									if ($roll > 3)
+									{
+										print("Commander! The $this is firing at the enemy! It rolled a $roll and HIT!");
+										$damage += $roll;
+									}
+									else
+										print("Commander! The $this is firing at the enemy! It rolled a $roll and MISSED!");
+								}
+								return ($damage);
+							}
+						}
+						else
+							print("Commander! The $this attempted to fire but we don't even know which way we're facing! (ANGLE KEYWORD UNDEFINED)");
+					}
+					else
+						print("Commander! The $this attempted to fire but we don't even know where we are! (MAP KEYWORD UNDEFINED)");
+				}
+				else
+					print("Commander! The $this attempted to fire but the targetting reticule is missing! (X/Y KEYWORDS UNDEFINED)");
+			}
+			else
+				print("Commander! The $this attempted to fire but the targetting systems are jammed! (CHAR KEYWORD UNDEFINED)");
 		}
 
 		/* Basic Class Methods */
-
-		public static function doc() 
-		{
-			if (file_exists("Weapon.doc.txt"))
-        		print (file_get_contents("Weapon.doc.txt"));
-			else
-				print ("Weapon.doc.txt is missing. Unable to print class documentation."); 
-		}
 
 		public function __toString() 
 		{
@@ -56,25 +159,11 @@ require_once  "Weapon.class.php";
 					'Long Range = ' . self::_lrange . PHP_EOL .
 					'Firing Directions = '. self::_firingdirs . PHP_EOL .
 					'Description = ' . self::_desc . PHP_EOL);
-			return ('[Weapon: {self::_name}]');
+			return ('[{self::_name}]');
 		}
 
 		public function __construct(array $kwargs) 
 		{
-			if (array_key_exists('name', $kwargs))
-				$this->_name = $kwargs['name'];
-			if (array_key_exists('charge', $kwargs))
-				$this->_charge = $kwargs['charge'];
-			if (array_key_exists('srange', $kwargs))
-				$this->_srange = $kwargs['srange'];
-			if (array_key_exists('mrange', $kwargs))
-				$this->_mrange = $kwargs['mrange'];
-			if (array_key_exists('lrange', $kwargs))
-				$this->_lrange = $kwargs['lrange'];
-			if (array_key_exists('firingdirs', $kwargs))
-				$this->_firingdirs = $kwargs['firingdirs'];
-			if (array_key_exists('desc', $kwargs))
-				$this->_desc = $kwargs['desc'];
 			if (self::$verbose == TRUE)
 				print("Created: " . $this . PHP_EOPL);
 		}
@@ -84,20 +173,6 @@ require_once  "Weapon.class.php";
 				print("Destructed: " . $this . PHP_EOPL);
 		}
 
-		
-		public function getArray() {
-			return (
-			array (
-			'name' => $this->_name, 
-			'charge' => $this->_charge, 
-			'srange' => $this->_srange,
-			'mrange' => $this->_mrange, 
-			'lrange' => $this->_lrange, 
-			'firingdirs' => $this->_firingdir,
-			'desc' => $this->_desc
-			));
-		}
-		
 		public function __clone() {
 			return (new Weapon($this->getArray()));
 		}
