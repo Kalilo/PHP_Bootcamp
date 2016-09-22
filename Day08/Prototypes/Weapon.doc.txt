@@ -14,10 +14,11 @@ Methods:
 getArray();
 Returns an array filled with all variables related to the weapons's state.
 
-fire($map);
+fire( $kwargs ); -('map' => $mapobj, 'postion' => $shiporigin, 'char' => 'a')-
 Recieves a map object and returns an integer of the amount of damage the 
 weapon managed to apply to any ships within it's limitations defined by the
-child weapon extending this class.
+child weapon extending this class. This method is dependent on the ship it is
+equipped to providing it with it's origin and the map character presenting it.
 
 author: ghavenga
 ---------------------------------------------------------------------- Weapon ->

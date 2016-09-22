@@ -1,21 +1,39 @@
 <?php
+
+require_once  "Weapon.class.php";
+
 	abstract class Weapon 
 	{
 
+		/* Constants */
+		const NAME       = "Nautical Lance";
+		const CHARGE     = 0;
+		const SRANGE     = 30;
+		const MRANGE     = 60;
+		const LRANGE     = 90;
+		const FIRINGDIRS = "Forward";
+		const DESC       = "A high powered beam of energy blasts a circular whole in 
+		anything unfortunate enough to be in front of this powerful but narrow shot. 
+		Can only hit a single enemy in a straight line from the fore of the ship.";
+
 		/* Variables */
-		private $_name = NULL;
-		private $_charge = 0;
-		private $_srange = 0;
-		private $_mrange = 0;
-		private $_lrange = 0;
-		private $_firingdirs = array ();
-		private $_desc = NULL;
+		private $_name       = NAME;
+		private $_charge     = CHARGE;
+		private $_srange     = SRANGE;
+		private $_mrange     = MRANGE;
+		private $_lrange     = LRANGE;
+		private $_firingdirs = FIRINGDIRS;
+		private $_desc       = DESC;
 
 		public static $verbose = FALSE;
 
 		/* Class Specific Methods */
 
-		abstract public function fire($map);
+		public function fire($map)
+		{
+			$origin = parent::position;
+			
+		}
 
 		/* Basic Class Methods */
 
@@ -43,6 +61,20 @@
 
 		public function __construct(array $kwargs) 
 		{
+			if (array_key_exists('name', $kwargs))
+				$this->_name = $kwargs['name'];
+			if (array_key_exists('charge', $kwargs))
+				$this->_charge = $kwargs['charge'];
+			if (array_key_exists('srange', $kwargs))
+				$this->_srange = $kwargs['srange'];
+			if (array_key_exists('mrange', $kwargs))
+				$this->_mrange = $kwargs['mrange'];
+			if (array_key_exists('lrange', $kwargs))
+				$this->_lrange = $kwargs['lrange'];
+			if (array_key_exists('firingdirs', $kwargs))
+				$this->_firingdirs = $kwargs['firingdirs'];
+			if (array_key_exists('desc', $kwargs))
+				$this->_desc = $kwargs['desc'];
 			if (self::$verbose == TRUE)
 				print("Created: " . $this . PHP_EOPL);
 		}
