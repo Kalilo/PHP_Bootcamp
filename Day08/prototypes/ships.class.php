@@ -18,7 +18,7 @@
 		public static $interact = FALSE;
 		/*Standard Basic Methods*/
 		public static function doc() {
-			print(file_get_contents("./Ship.doc.txt"));
+			print(file_get_contents("./ship.doc.txt"));
 		}
 		public function __toString() {
 			if (self::$verbose == TRUE)
