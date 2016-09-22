@@ -63,8 +63,9 @@
 		}
 		/*Get and Set*/
 		public function getArray() {
-			return (array ('name' => $this->_Name, 'size' => $this->_Size, 'sprite' => $this->_Sprite,
-							'hp' => $this->_HP, 'enginepower' => $this->_EnginePower, 
+			return (array ('name' => $this->_Name, 'size' => $this->_Size,
+							'sprite' => $this->_Sprite, 'hp' => $this->_HP,
+							'enginepower' => $this->_EnginePower, 
 							'speed' => $this->_Speed, 'handling' => $this->_Handling,
 							'shield' => $this->_Shield, 'weapon' => $this->_Weapon));
 		}
