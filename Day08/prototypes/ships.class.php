@@ -13,6 +13,7 @@
 		private $_PP = NULL;
 		/*Variables*/
 		public static $verbose = FALSE;
+		public static $interact = FALSE;
 		/*Standard Basic Methods*/
 		public static function doc() {
 			print(file_get_contents("./Ship.doc.txt"));
@@ -74,5 +75,22 @@
 			return (new Ship($this->getArray()));
 		}
 		/*Methods*/
+		public function TakeHit($damage) {
+			//reduce shield, then reduce hp
+			if ($this->_Shield > 0) {
+				$damage -= $this->_Shield;
+				$this->_Shield = ($damage >= $this->_Shield) ? 0 : $this->_Shield - $damage;
+			}
+			if ($damage > 0) {
+				$this->_HP = ($damage >= $this->_HP) ? 0 : $this->_HP - $damage;
+			}
+			if (self::$interact == TRUE) {
+				if ($this->_HP <= 0)
+					print("Ship : {$this->_Name} took a hit, destroying it." . PHP_EOL);
+				else
+					print("Ship : {$this->_Name} took a hit, reducing it's HP to {$this->_HP}" . PHP_EOL);
+			}
+			return ($this->_HP);
+		}
 	}
 ?>
