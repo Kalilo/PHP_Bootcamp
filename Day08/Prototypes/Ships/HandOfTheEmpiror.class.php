@@ -2,6 +2,9 @@
 	/**
 	 * This is a child of the Ships class.
 	 */
+
+require_once("../Ship.class.php");
+
 	class HandOfTheEmpiror extends Ships {
 		/*Constructor and destructor*/
 		function __construct($kwargs) {
