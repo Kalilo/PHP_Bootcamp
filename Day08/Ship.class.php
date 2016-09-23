@@ -1,6 +1,7 @@
 <?php
-		Abstract Class Ships {
-		/*Constants*/
+		abstract class Ships 
+		{
+
 		private $_Name = NULL;
 		private $_Size = NULL;
 		private $_Sprite = NULL;
@@ -19,25 +20,11 @@
 		public static $verbose = FALSE;
 		public static $interact = FALSE;
 		/*Standard Basic Methods*/
+
 		public static function doc() {
 			print(file_get_contents("./Ship.doc.txt"));
 		}
-		public function __toString() {
-			if (self::$verbose == TRUE)
-				return ('[Ship:' . PHP_EOL .
-					'Name = ' . self::Name . PHP_EOL .
-					'Size = ' . self::Size . PHP_EOL .
-					'Sprite = ' . self::Sprite . PHP_EOL .
-					'HP = ' . self::HP . PHP_EOL .
-					'EnginePower = ' . self::EnginePower . PHP_EOL .
-					'Speed = ' . self::Speed . PHP_EOL .
-					'Handling = '. self::Handling . PHP_EOL .
-					'Shield = ' . self::Shield . PHP_EOL .
-					'Weapon = ' . self::Weapon . PHP_EOL .
-					'Bouclier = ' .self::Bouclier . PHP_EOL .
-					'PP = '. self::PP . ']' . PHP_EOL);
-			return ('[Ship: {self::Name}]');
-		}
+		abstract public function __toString();
 		/*Constructor and Destructor*/
 		public function __construct(array $kwargs) {
 				/*Ship Details*/
@@ -90,21 +77,7 @@
 		public function getVel() {
 			return ($this->_Velocity);
 		}
-		public function getCoords() {
-			$x1 = ($this->_Position['x']) - ($this->_Size['x'] / 2);
-			$y1 = ($this->_Position['y']) - ($this->_Size['y'] / 2);
-			$x2 = ($x1) + ($this->_Size['x']);
-			$y2 = ($y2) + ($this->_Size['y']);
-			while ($x1 < $x2) {
-				$k = $y1;
-				while ($k < $y2) {
-					$pos[] = array('x' => $x1, 'y' => $k);
-					$k++;
-				}
-				$x1++;
-			}
-			return ($pos);
-		}
+		abstract public function getCoords();
 		/*Clone*/
 		public function __clone() {
 			return (new Ship($this->getArray()));
@@ -133,8 +106,6 @@
 		public function SpendPP($kwargs) {
 			//
 		}
-		public function AdjustVelocity() {
-			//
-		}
+		abstract public function AdjustVelocity();
 	}
 ?>

@@ -1,24 +1,71 @@
 <?php
+require_once("Obstacles.class.php");
+require_once("HandOfTheEmpiror.class.php");
 session_start();
 
-require_once("Prototypes/Ships/Obstacles.class.php");
-require_once("Prototypes/Ships/HandOfTheEmpiror.class.php");
+ini_set('display_errors', true);
+error_reporting(E_ALL);
+
+function makemap()
+{
+	$map;
+	for ($x = 0; $x < 150; $x++)
+		for ($y = 0; $y < 100; $y++)
+			$map[$x][$y] = '.';
+
+	return ($map);
+
+}
+
+function placeship($positions, $map, $char)
+{
+	foreach ($positions as $coords)
+	{
+		$map[$coords['x']][$coords['y']] = $char;
+	}
+	return ($map);
+}
+
+function  maptostring($map)
+{
+	$mapstring = ' ';
+	for ($y = 0; $y < 100; $y++)
+	{
+		for ($x = 0; $x < 150; $x++)
+			$mapstring = $mapstring . $map[$x][$y];
+		$mapstring = $mapstring . PHP_EOL;
+	}
+	return ($mapstring);
+}
+
+//if ($_SESSION['map'] == NULL)
+	$map = makemap();
 
 $time = '[' . date("h-m-s") . ']:';
 $_SESSION['turno'] = $_SESSION['turno'] + 1;
 $_SESSION['log']  = " Turn {$_SESSION['turno']} -------------------------------------------------------------------------- " . "</br>" . $_SESSION['log'];
 $_SESSION['log']  = "$time Commander! We're trying out new equipment! Stand by!" . "</br>" . $_SESSION['log'];
-$_SESSION['map']  = file_get_contents("map.txt");
+//$_SESSION['map']  = file_get_contents("map.txt");
 $_SESSION['turn'] = (($_SESSION['turn'] + 1) % 2);
-//if ($_SESSION['p1s'] == NULL)
-//	$_SESSION['p1s'] = new HandOfTheEmpiror();
-//if ($_SESSION['p2s'] == NULL)
-//	$_SESSION['p2s'] = new HandOfTheEmpiror();
+if ($_SESSION['p1s'] == NULL)
+	$_SESSION['p1s'] = new HandOfTheEmpiror(array('x' => 23, 'y' => 34));
+if ($_SESSION['p2s'] == NULL)
+	$_SESSION['p2s'] = new HandOfTheEmpiror(array('x' => 56, 'y' => 78));
 $turn = $_SESSION['turn'] + 1;
+$player = "p".$turn."s";
 $_SESSION['log']  = "$time Commander! It's player {$turn}'s turn! BRACE FOR IMPACT!" . "</br>" . $_SESSION['log'];
 if ($_GET['charge'] > 0)
 	$_SESSION['log']  = "$time Commander! Directive Recieved! {$_GET['charge']} power to Weapons!" . "</br>" . $_SESSION['log'];
 
+
+//after actions
+
+$_SESSION['map'] = placeship($_SESSION['p2s']->getCoords(), $map, 'Z');
+$_SESSION['map'] = placeship($_SESSION['p1s']->getCoords(), $map, 'X');
+//var_dump($_SESSION['p2s']);
+//var_dump($_SESSION['p1s']);
+
+$map = maptostring($_SESSION['map']);;
 ?>
 
 <!DOCTYPE html>
@@ -32,8 +79,9 @@ if ($_GET['charge'] > 0)
 	}
 	.map
 	{
+		align: middle;
 		height: 500px;
-		width:  100%;
+		width:  50%;
 		border: 1px solid white;
 		color: white;
 		overflow-y: scroll;
@@ -80,7 +128,7 @@ if ($_GET['charge'] > 0)
 </style>
 <body>
 
-<div class="map"><?=$_SESSION['map']?></div>
+<div class="map"><?=$map?></div>
 <div class="container">
 	<div class="log">
 		<div align="middle">
@@ -95,7 +143,7 @@ if ($_GET['charge'] > 0)
 		<div class="input" >
 			<form align="left" method = "get" action = "<?php echo $_SERVER['PHP_SELF']; ?>" name = "index.php">
 
-				   <div>Ship Name  =  </div>
+				   <div>Ship Name  =</br>  <?php echo $_SESSION[$player] ?></div>
 				   </br></br>
 				   <div>Hullpoints =  </br> Spend PP for a chance to Repair:</br><input type = "number" name = "passwd" value = "<?php echo $_SESSION['pass'] ?>"></div>
 				   </br></br>

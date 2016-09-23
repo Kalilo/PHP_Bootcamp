@@ -1,8 +1,8 @@
 <?php
 
-require_once  "Weapon.class.php";
+require_once("Weapon.class.php");
 
-	abstract class Weapon 
+	class NauticalLance extends Weapon
 	{
 
 		/* Constants */
