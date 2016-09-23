@@ -4,10 +4,14 @@
 	 */
 
 require_once("../Ship.class.php");
+require_once("../Weapons/NauticalLance.class.php");
 
-	class HandOfTheEmpiror extends Ships {
+	class HandOfTheEmpiror extends Ships 
+	{
 		/*Constructor and destructor*/
-		function __construct($kwargs) {
+		function __construct($kwargs) 
+		{
+			parent::__construct;
 				/*Details*/
 			$this->_Name = "Hand of the Empiror";
 			$this->_Size = array('x' => 1, 'y' => 4);
@@ -16,7 +20,7 @@ require_once("../Ship.class.php");
 			$this->_Speed = 15;
 			$this->_Handling = 4;
 			$this->_Bouclier = 0;
-			$this->_Weapon = new NauticalLance();/*To be added*/
+			$this->_Weapon = new NauticalLance();
 				/*kwargs*/
 			$this->_Position = (array_key_exists('position', $kwargs)) ? $kwargs['position'] : 
 				array('x' => rand(15, 135), 'y' =>rand(15, 85));
@@ -26,7 +30,7 @@ require_once("../Ship.class.php");
 			if (self::$verbose == TRUE)
 				print("Created: " . $this . PHP_EOPL);
 			if (self::$interact == TRUE)
-				print("The Empirors hand has extended to you a new powerfull vessile (HandOfTheEmpiror created)." . PHP_EOL);
+				print("The Empirors hand has extended to you a new powerfull vessel (HandOfTheEmpiror created)." . PHP_EOL);
 		}
 	}
 	

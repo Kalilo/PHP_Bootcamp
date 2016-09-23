@@ -162,7 +162,7 @@ require_once  "Weapon.class.php";
 			return ('[{self::_name}]');
 		}
 
-		public function __construct(array $kwargs) 
+		public function __construct() 
 		{
 			if (self::$verbose == TRUE)
 				print("Created: " . $this . PHP_EOPL);

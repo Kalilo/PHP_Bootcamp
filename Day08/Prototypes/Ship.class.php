@@ -70,7 +70,7 @@
 			if (self::$verbose == TRUE)
 				print("Created: " . $this . PHP_EOPL);
 			if (self::$interact == TRUE)
-				print("A new {$this->_Name} vessile has been summoned into existance." . PHP_EOL);
+				print("A new {$this->_Name} vessel has been summoned into existence." . PHP_EOL);
 		}
 		public function __destruct() {
 			if (self::$verbose == TRUE)
