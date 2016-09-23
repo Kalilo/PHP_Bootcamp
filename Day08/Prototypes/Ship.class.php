@@ -90,6 +90,21 @@
 		public function getVel() {
 			return ($this->_Velocity);
 		}
+		public function getCoords() {
+			$x1 = ($this->_Position['x']) - ($this->_Size['x'] / 2);
+			$y1 = ($this->_Position['y']) - ($this->_Size['y'] / 2);
+			$x2 = ($x1) + ($this->_Size['x']);
+			$y2 = ($y2) + ($this->_Size['y']);
+			while ($x1 < $x2) {
+				$k = $y1;
+				while ($k < $y2) {
+					$pos[] = array('x' => $x1, 'y' => $k);
+					$k++;
+				}
+				$x1++;
+			}
+			return ($pos);
+		}
 		/*Clone*/
 		public function __clone() {
 			return (new Ship($this->getArray()));
