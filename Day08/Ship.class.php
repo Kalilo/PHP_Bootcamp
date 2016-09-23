@@ -1,6 +1,7 @@
 <?php
-		Abstract Class Ships {
-		/*Constants*/
+		abstract class Ships 
+		{
+
 		private $_Name = NULL;
 		private $_Size = NULL;
 		private $_Sprite = NULL;
@@ -19,25 +20,11 @@
 		public static $verbose = FALSE;
 		public static $interact = FALSE;
 		/*Standard Basic Methods*/
+
 		public static function doc() {
 			print(file_get_contents("./Ship.doc.txt"));
 		}
-		public function __toString() {
-			if (self::$verbose == TRUE)
-				return ('[Ship:' . PHP_EOL .
-					'Name = ' . self::Name . PHP_EOL .
-					'Size = ' . self::Size . PHP_EOL .
-					'Sprite = ' . self::Sprite . PHP_EOL .
-					'HP = ' . self::HP . PHP_EOL .
-					'EnginePower = ' . self::EnginePower . PHP_EOL .
-					'Speed = ' . self::Speed . PHP_EOL .
-					'Handling = '. self::Handling . PHP_EOL .
-					'Shield = ' . self::Shield . PHP_EOL .
-					'Weapon = ' . self::Weapon . PHP_EOL .
-					'Bouclier = ' .self::Bouclier . PHP_EOL .
-					'PP = '. self::PP . ']' . PHP_EOL);
-			return ('[Ship: {self::Name}]');
-		}
+		abstract public function __toString();
 		/*Constructor and Destructor*/
 		public function __construct(array $kwargs) {
 				/*Ship Details*/
@@ -70,7 +57,7 @@
 			if (self::$verbose == TRUE)
 				print("Created: " . $this . PHP_EOPL);
 			if (self::$interact == TRUE)
-				print("A new {$this->_Name} vessile has been summoned into existance." . PHP_EOL);
+				print("A new {$this->_Name} vessel has been summoned into existence." . PHP_EOL);
 		}
 		public function __destruct() {
 			if (self::$verbose == TRUE)
@@ -90,6 +77,7 @@
 		public function getVel() {
 			return ($this->_Velocity);
 		}
+		abstract public function getCoords();
 		/*Clone*/
 		public function __clone() {
 			return (new Ship($this->getArray()));
@@ -118,8 +106,6 @@
 		public function SpendPP($kwargs) {
 			//
 		}
-		public function AdjustVelocity() {
-			//
-		}
+		abstract public function AdjustVelocity();
 	}
 ?>
