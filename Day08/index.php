@@ -60,8 +60,9 @@ if ($_GET['charge'] > 0)
 
 //after actions
 
-$_SESSION['map'] = placeship($_SESSION['p2s']->getCoords(), $map, 'Z');
+
 $_SESSION['map'] = placeship($_SESSION['p1s']->getCoords(), $map, 'X');
+$_SESSION['map'] = placeship($_SESSION['p2s']->getCoords(), $_SESSION['map'], 'Z');
 //var_dump($_SESSION['p2s']);
 //var_dump($_SESSION['p1s']);
 
