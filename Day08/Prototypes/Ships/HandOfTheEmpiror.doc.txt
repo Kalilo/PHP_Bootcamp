@@ -19,7 +19,7 @@ For more details read the documentation on the Ships class.
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Default vessile stats:
+Default vessel stats:
 	Name: "Hand Of The Emperor"
 	Size: 1x4 cases
 	Hull points: 5
