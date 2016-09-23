@@ -64,7 +64,7 @@ require_once("NauticalLance.class.php");
 			//if (!$this->_Position['x'] && !$this->_Position['y'])
 		//	var_dump($this->_Size);
 		//	var_dump($this->_Position);
-			//	$this->_Position = array ('x' => rand(15, 135), 'y' => rand(15, 85));
+				$this->_Position = array ('x' => rand(15, 135), 'y' => rand(15, 85));
 			//	var_dump($this->_Position);
 			$x1 = ($this->_Position['x']) - ($this->_Size['x'] / 2);
 			$y1 = ($this->_Position['y']) - ($this->_Size['y'] / 2);

@@ -48,9 +48,9 @@ $_SESSION['log']  = "$time Commander! We're trying out new equipment! Stand by!"
 //$_SESSION['map']  = file_get_contents("map.txt");
 $_SESSION['turn'] = (($_SESSION['turn'] + 1) % 2);
 if ($_SESSION['p1s'] == NULL)
-	$_SESSION['p1s'] = new HandOfTheEmpiror(array('x' => 23, 'y' => 34));
+	$_SESSION['p1s'] = new HandOfTheEmpiror(array('x' => rand() % 150, 'y' => rand() % 150));
 if ($_SESSION['p2s'] == NULL)
-	$_SESSION['p2s'] = new HandOfTheEmpiror(array('x' => 56, 'y' => 78));
+	$_SESSION['p2s'] = new HandOfTheEmpiror(array('x' => rand() % 150, 'y' => rand() % 150));
 $turn = $_SESSION['turn'] + 1;
 $player = "p".$turn."s";
 $_SESSION['log']  = "$time Commander! It's player {$turn}'s turn! BRACE FOR IMPACT!" . "</br>" . $_SESSION['log'];
@@ -61,6 +61,8 @@ if ($_GET['charge'] > 0)
 //after actions
 
 
+//$_SESSION['map'] = placeship($_SESSION['p1s']->getCoords(), $map, 'X');
+//$_SESSION['map'] = placeship($_SESSION['p2s']->getCoords(), $_SESSION['map'], 'Z');
 $_SESSION['map'] = placeship($_SESSION['p1s']->getCoords(), $map, 'X');
 $_SESSION['map'] = placeship($_SESSION['p2s']->getCoords(), $_SESSION['map'], 'Z');
 //var_dump($_SESSION['p2s']);
