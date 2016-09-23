@@ -15,7 +15,13 @@
 
 		/* Class Specific Methods */
 
-		abstract public function fire($map);
+		abstract public function fire($kwargs);
+	
+		/*Get and Set*/
+		public function setCharge($charge) {
+			$this->_charge = CHARGE;
+			$this->_charge += $charge;
+		}
 
 		/* Basic Class Methods */
 
