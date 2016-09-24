@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+	<head>
+		<title>
+			<script
+				src="src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">"></script>
+	
+		</title>
+	</head>
+	<body>
+		<span id="my_span">Try me!</span>
+		<script>
+			$(document).ready(function() {
+				$('#my_span').click(function(){
+					$.get('test.php', function(data, status){
+						alert("Data: " + data + "\nStatus: " + status);
+					})
+				});
+			});
+		</script>
+	</body>
+</html>
