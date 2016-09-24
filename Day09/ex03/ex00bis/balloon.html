@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>Js Lesson 0</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  	<script>
+		$(document).ready(function() {
+			var col = "red";
+			var size = 200;
+			var bal = $("#balloon");
+
+			function changeColour(bal, col, method)
+			{
+				if ((col == "red" && method == 1) || col == "blue" && method == 2){
+					bal.css("background-color", "green");
+					return ("green");
+				}
+				else if ((col == "green" && method == 1) || col == "red" && method == 2){
+					bal.css("background-color", "blue");
+					return ("blue");
+				}
+				else {
+					bal.css("background-color", "red");
+					return ("red");
+				}
+			}
+			function ChangeSize(size, inc) {
+				size += inc;
+				if (size > 420 || size < 200)
+					size = 200;
+				bal.css("height", size);
+				bal.css("width", size);
+				return (size);
+			}
+
+			bal.click(function() {
+				col = changeColour(bal, col, 1);
+				size = ChangeSize(size, 10);
+			});
+			bal.mouseleave(function () {
+				col = changeColour(bal, col, 2);
+				size = ChangeSize(size, -5);
+			});
+		});
+	</script>
+  </head>
+  <body>
+	<div  id="balloon" style="height: 200px; width: 200px; background-color: red; border-radius: 10000px;" ></div>
+  </body>
+</html>

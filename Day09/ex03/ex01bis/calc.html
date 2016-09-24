@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Js Lesson 1</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+		$(document).ready(function() {
+			var numL = $("#left_No");
+			var op = $("#Oper");
+			var numR = $("#right_No");
+			var tryMe = $("#try_me");
+
+			window.setInterval(function () {
+				alert("Please, use me...");
+			}, 30000);
+
+			var show = function(text) {
+				console.log(text);
+				alert(text);
+			};
+			tryMe.click(function () {
+				if (!($.isNumeric(numL.val()) && $.isNumeric(numR.val())))
+					show("Error :(");
+				if ((op.val() == "/" || op.val() == "%") && numR.val() == 0)
+					show("It's over 9000!");
+				var result = eval(numL.val() + op.val() + numR.val());
+				show(result);
+			});
+		});
+	</script>
+  </head>
+  <body>
+    <input type = "number" id="left_No" />
+  	<select id="Oper">
+  		<option value="+">+</option>
+  		<option value="-">-</option>
+  		<option value="*">*</option>
+  		<option value="/">/</option>
+  		<option value="%">%</option>
+  	</select>
+  	<input type = "number" id="right_No" />
+  	<input id="try_me" type="submit" value="Try me!"/>
+  </body>
+</html>
