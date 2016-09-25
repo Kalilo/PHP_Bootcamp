@@ -27,7 +27,7 @@ $(document).ready(function() {
             function(event_object) {
                 var sure = confirm("Are you sure you want to delete this TO DO?");
                 if (sure) {
-					event_object.target.remove();
+                    event_object.target.remove();
                     request("delete.php", event_object.val(), remove_item());
                 }
             });
