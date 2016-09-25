@@ -1,25 +1,14 @@
 <html>
+
 <head>
-	<title>Js Lesson 2</title>
-	<script>
-		function loadDoc() {
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("demo").innerHTML = this.responseText;
-			}
-	  		};
-	  		xhttp.open("POST", "demo_post.asp", true);
-	  		xhttp.send();
-		}
-		function insert_item() {
-			//here
-		}
-	</script>
+    <title>Js Lesson 2</title>
+    <script src="todo.js"></script>
 </head>
+
 <body>
-	<input id="add_item" type="submit" value="New"/>
-	<div id="ft_list">
-	</div>
+    <input id="add_item" type="submit" value="New" />
+    <div id="ft_list">
+    </div>
 </body>
+
 </html>
