@@ -7,6 +7,12 @@
 	if (file_exists("list.csv") == FALSE && file_put_contents("list.csv", ""))
 		die("Error: Failed to create the csv database" .PHP_EOL);
 	/*Save content*/
-	$file = fopen("list.csv");
-	fputcsv($file, array("TODO" => $_POST['q']));
+	$list = array (array($_POST['q']));
+	$fp = fopen('list.csv', 'a+');
+
+	foreach ($list as $fields) {
+    	fputcsv($fp, $fields);
+	}
+
+	fclose($fp);
 ?>
