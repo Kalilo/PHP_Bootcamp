@@ -2,6 +2,8 @@ $(document).ready(function() {
     var button = $("#add_item");
     var list = $("#ft_list");
 
+    request("select.csv", 0, 0);
+
     /*Imported*/
 
     button.click(function() {
@@ -16,7 +18,6 @@ $(document).ready(function() {
     /*Altered*/
 
     function addtask(text) {
-        request("insert.php", text, 0);
         console.log("adding task to DOM: " + text);
         var item_id = "todo";
         var new_item = document.createElement("LI");
@@ -26,8 +27,8 @@ $(document).ready(function() {
             function(event_object) {
                 var sure = confirm("Are you sure you want to delete this TO DO?");
                 if (sure) {
-                    remove_item();
-                    event_object.target.remove();
+					event_object.target.remove();
+                    request("delete.php", event_object.val(), remove_item());
                 }
             });
         var list = document.getElementById("ft_list");
@@ -48,6 +49,7 @@ $(document).ready(function() {
             }
         };
         xhttp.open("POST", file, true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("q=" + text);
     }
 

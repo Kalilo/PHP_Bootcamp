@@ -13,6 +13,6 @@
 	foreach ($list as $fields) {
     	fputcsv($fp, $fields);
 	}
-
+	
 	fclose($fp);
 ?>
